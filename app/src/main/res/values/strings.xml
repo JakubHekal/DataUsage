@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Data usage</string>
+    <string name="app_info">Made with &#10084; in Czechia</string>
+    <string name="menu_refresh">Refresh</string>
+    <string name="refreshed">Refreshed</string>
+    <string name="this_period">This period</string>
+    <string name="today">Today</string>
+    <string name="day">Day</string>
+    <string name="author" translatable="false">Jakub Hekal</string>
+
+    <string name="apps_title">Apps</string>
+    <string name="apps_info">Data usage details for all apps</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_info">Manage limits, notifications etc.</string>
+    <string name="theme_title">Theme</string>
+    <string name="limit_title">Limits</string>
+    <string name="limit_info">Set data usage limits for day and period</string>
+    <string name="period_title">Period</string>
+    <string name="period_info_main_1">%1$d day remaining (%2$s)</string>
+    <string name="period_info_main_2">%1$d days remaining (%2$s)</string>
+    <string name="period_info_main_3">%1$d days remaining (%2$s)</string>
+    <string name="period_info_settings">New period starts %1$d. day in month</string>
+    <string name="permissions_title">Permissions</string>
+    <string name="notifications_title">Notifications</string>
+    <string name="notifications_info">Get notifications about your data usage</string>
+
+    <string name="dialog_theme_title">Choose theme</string>
+    <string name="dialog_theme_dark">Dark</string>
+    <string name="dialog_theme_light">Light</string>
+    <string name="dialog_theme_system">Controlled by system setting</string>
+
+    <string name="dialog_permissions_title">Grant permissions?</string>
+    <string name="dialog_permissions_info">To work properly this app needs permission to read telephone records, usage data and run on background</string>
+    <string name="dialog_permissions_yes">Grant</string>
+
+    <string name="dialog_period_title">New period starting day</string>
+    <string name="dialog_period_yes">Set</string>
+
+    <string name="dialog_limits_unlimited">Unlimited</string>
+    <string name="dialog_limits_calculated">Calculated</string>
+    <string name="period_end_title">End of period</string>
+    <string name="statistics_title">Statistics</string>
+    <string name="statistics_info">Your detailed data usage overview</string>
+    <string name="notification_permanent_title">Used: %1$s</string>
+    <string name="notification_permanent_info">Limit: %1$s</string>
+    <string name="notification_warning_title">Usage warning</string>
+    <string name="notification_warning_info">You already used %1$d% of your daily limit</string>
+    <string name="permanent_title">Permanent notification</string>
+    <string name="permanent_info">Shows today\'s usage, limit and it\'s visible when you have enabled mobile data</string>
+    <string name="warning_title">Warning notification</string>
+    <string name="warning_info">Shows when reach your limit and its half</string>
+    <string name="outdated_title">Outdated data?</string>
+    <string name="outdated_info">Information about apps data usage could be outdated for about an hour, due to system security measures</string>
+    <string name="apps_empty" >No app used data</string>
+</resources>
