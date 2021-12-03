@@ -16,6 +16,7 @@ import com.jakubhekal.datausage.R;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class Utils {
 
@@ -32,7 +33,7 @@ public class Utils {
             bytes /= 1000;
             ci.next();
         }
-        return String.format("%.1f %cB", bytes / 1000.0, ci.current());
+        return String.format(Locale.getDefault(), "%.1f %cB", bytes / 1000.0, ci.current());
     }
 
     public static Long getDayStartMillis() {
@@ -46,6 +47,19 @@ public class Utils {
 
         return c.getTimeInMillis();
     }
+
+    public static Long getDayEndMillis() {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
+
+        c.add(Calendar.DAY_OF_MONTH, 1);
+
+        return c.getTimeInMillis();
+    }
+
 
     public static Long getPeriodEndMillis(int endingDay) {
         Calendar c = Calendar.getInstance();

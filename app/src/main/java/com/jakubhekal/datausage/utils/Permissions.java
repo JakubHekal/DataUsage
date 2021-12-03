@@ -80,6 +80,7 @@ public class Permissions {
         if(!hasPermissionToIgnoreBatteryOptimizations(context)) {
             requestPermissionToIgnoreBatteryOptimizations(context);
         }
+
     }
 
     public static void requestPermissionToReadPhoneStats(Context context) {

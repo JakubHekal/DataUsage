@@ -66,22 +66,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void calculateOverview() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            NetworkStatsManager networkStatsManager = (NetworkStatsManager) getApplicationContext().getSystemService(Context.NETWORK_STATS_SERVICE);
-            NetworkStatsHelper networkStatsHelper = new NetworkStatsHelper(networkStatsManager);
+        NetworkStatsManager networkStatsManager = (NetworkStatsManager) getApplicationContext().getSystemService(Context.NETWORK_STATS_SERVICE);
+        NetworkStatsHelper networkStatsHelper = new NetworkStatsHelper(networkStatsManager);
 
-            int daysTillEndOfPeriod = (int) ((Utils.getPeriodEndMillis(preferenceManager.getPeriodStart()) - Utils.getDayStartMillis()) / (1000*60*60*24)) + 1;
-            Long periodUsage = networkStatsHelper.getAllBytesMobile(this, Utils.getPeriodStartMillis(preferenceManager.getPeriodStart()));
-            Long periodLimit = preferenceManager.getPeriodLimit();
+        int daysTillEndOfPeriod = (int) ((Utils.getPeriodEndMillis(preferenceManager.getPeriodStart()) - Utils.getDayStartMillis()) / (1000*60*60*24)) + 1;
+        Long periodUsage = networkStatsHelper.getAllBytesMobile(this, Utils.getPeriodStartMillis(preferenceManager.getPeriodStart()));
+        Long periodLimit = preferenceManager.getPeriodLimit();
 
-            periodUsageView.setData(Utils.convertFromBytes(periodUsage), Utils.convertFromBytes(periodLimit), ((float)periodUsage / periodLimit));
-            periodView.setInfo(Utils.formatDaysReaming(this, daysTillEndOfPeriod, Utils.dateFromMillis(Utils.getPeriodEndMillis(preferenceManager.getPeriodStart()))));
+        periodUsageView.setData(Utils.convertFromBytes(periodUsage), Utils.convertFromBytes(periodLimit), ((float)periodUsage / periodLimit));
+        periodView.setInfo(Utils.formatDaysReaming(this, daysTillEndOfPeriod, Utils.dateFromMillis(Utils.getPeriodEndMillis(preferenceManager.getPeriodStart()))));
 
-            Long dailyUsage = networkStatsHelper.getAllBytesMobile(this, Utils.getDayStartMillis());
-            Long dailyLimit = preferenceManager.getDailyLimitCustom() ? preferenceManager.getDailyLimit() : (periodLimit - (periodUsage-dailyUsage)) / daysTillEndOfPeriod;
+        Long dailyUsage = networkStatsHelper.getAllBytesMobile(this, Utils.getDayStartMillis());
+        Long dailyLimit = preferenceManager.getDailyLimitCustom() ? preferenceManager.getDailyLimit() : (periodLimit - (periodUsage-dailyUsage)) / daysTillEndOfPeriod;
 
-            dailyUsageView.setData(Utils.convertFromBytes(dailyUsage), Utils.convertFromBytes(dailyLimit), ((float)dailyUsage / dailyLimit));
-        }
+        dailyUsageView.setData(Utils.convertFromBytes(dailyUsage), Utils.convertFromBytes(dailyLimit), ((float)dailyUsage / dailyLimit));
     }
 
 
@@ -96,22 +94,4 @@ public class MainActivity extends AppCompatActivity {
             Dialogs.showPermissionsDialog(this, getLayoutInflater());
         }
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.action_refresh){
-            calculateOverview();
-            startService(new Intent(this, NotifyService.class));
-            Toast.makeText(this,getString(R.string.refreshed), Toast.LENGTH_SHORT).show();
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
 }

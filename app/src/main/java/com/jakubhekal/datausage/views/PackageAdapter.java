@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jakubhekal.datausage.R;
@@ -23,6 +24,7 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageV
         mPackageList = packageList;
     }
 
+    @NonNull
     @Override
     public PackageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_app, parent, false);
@@ -55,14 +57,11 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageV
         public PackageViewHolder(View itemView) {
             super(itemView);
             context = itemView.getContext();
-            name = (TextView) itemView.findViewById(R.id.text_app_name);
-            dataUsage = (TextView) itemView.findViewById(R.id.text_data_usage);
-            icon = (ImageView) itemView.findViewById(R.id.app_icon);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+            name = itemView.findViewById(R.id.text_app_name);
+            dataUsage = itemView.findViewById(R.id.text_data_usage);
+            icon = itemView.findViewById(R.id.app_icon);
+            itemView.setOnClickListener(view -> {
 
-                }
             });
         }
     }

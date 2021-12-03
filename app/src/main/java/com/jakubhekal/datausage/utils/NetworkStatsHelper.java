@@ -10,8 +10,15 @@ import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.RemoteException;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 import androidx.core.app.ActivityCompat;
+
+import java.text.SimpleDateFormat;
+import java.time.Period;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Set;
 
 
 @TargetApi(Build.VERSION_CODES.M)
@@ -35,7 +42,7 @@ public class NetworkStatsHelper {
             bucket = networkStatsManager.querySummaryForDevice(ConnectivityManager.TYPE_MOBILE,
                     getSubscriberId(context, ConnectivityManager.TYPE_MOBILE),
                     startTime,
-                    System.currentTimeMillis());
+                    Utils.getDayEndMillis());
         } catch (RemoteException e) {
             return -1;
         }
@@ -48,7 +55,7 @@ public class NetworkStatsHelper {
             bucket = networkStatsManager.querySummaryForDevice(ConnectivityManager.TYPE_MOBILE,
                     getSubscriberId(context, ConnectivityManager.TYPE_MOBILE),
                     startTime,
-                    System.currentTimeMillis());
+                    Utils.getDayEndMillis());
         } catch (RemoteException e) {
             return -1;
         }
@@ -65,7 +72,7 @@ public class NetworkStatsHelper {
             bucket = networkStatsManager.querySummaryForDevice(ConnectivityManager.TYPE_WIFI,
                     "",
                     0,
-                    System.currentTimeMillis());
+                    Utils.getDayEndMillis());
         } catch (RemoteException e) {
             return -1;
         }
@@ -78,7 +85,7 @@ public class NetworkStatsHelper {
             bucket = networkStatsManager.querySummaryForDevice(ConnectivityManager.TYPE_WIFI,
                     "",
                     0,
-                    System.currentTimeMillis());
+                    Utils.getDayEndMillis());
         } catch (RemoteException e) {
             return -1;
         }
@@ -86,13 +93,13 @@ public class NetworkStatsHelper {
     }
 
     public long getPackageRxBytesMobile(Context context, Long startTime) {
-        NetworkStats networkStats = null;
+        NetworkStats networkStats;
         try {
             networkStats = networkStatsManager.queryDetailsForUid(
                     ConnectivityManager.TYPE_MOBILE,
                     getSubscriberId(context, ConnectivityManager.TYPE_MOBILE),
                     startTime,
-                    System.currentTimeMillis(),
+                    Utils.getDayEndMillis(),
                     packageUid);
         } catch (Exception e) {
             return -1;
@@ -109,13 +116,13 @@ public class NetworkStatsHelper {
     }
 
     public long getPackageTxBytesMobile(Context context, Long startTime) {
-        NetworkStats networkStats = null;
+        NetworkStats networkStats;
         try {
             networkStats = networkStatsManager.queryDetailsForUid(
                     ConnectivityManager.TYPE_MOBILE,
                     getSubscriberId(context, ConnectivityManager.TYPE_MOBILE),
                     startTime,
-                    System.currentTimeMillis(),
+                    Utils.getDayEndMillis(),
                     packageUid);
         } catch (Exception e) {
             return -1;
@@ -136,13 +143,13 @@ public class NetworkStatsHelper {
     }
 
     public long getPackageRxBytesWifi() {
-        NetworkStats networkStats = null;
+        NetworkStats networkStats;
         try {
             networkStats = networkStatsManager.queryDetailsForUid(
                     ConnectivityManager.TYPE_WIFI,
                     "",
                     0,
-                    System.currentTimeMillis(),
+                    Utils.getDayEndMillis(),
                     packageUid);
         } catch (Exception e) {
             return -1;
@@ -159,13 +166,13 @@ public class NetworkStatsHelper {
     }
 
     public long getPackageTxBytesWifi() {
-        NetworkStats networkStats = null;
+        NetworkStats networkStats;
         try {
             networkStats = networkStatsManager.queryDetailsForUid(
                     ConnectivityManager.TYPE_WIFI,
                     "",
                     0,
-                    System.currentTimeMillis(),
+                    Utils.getDayEndMillis(),
                     packageUid);
         } catch (Exception e) {
             return -1;
