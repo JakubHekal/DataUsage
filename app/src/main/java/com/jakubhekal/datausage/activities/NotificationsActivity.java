@@ -1,13 +1,13 @@
-package com.jakubhekal.datausage;
+package com.jakubhekal.datausage.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 
-import com.jakubhekal.datausage.utils.Dialogs;
-import com.jakubhekal.datausage.utils.PreferenceManager;
-import com.jakubhekal.datausage.utils.Utils;
+import com.jakubhekal.datausage.R;
+import com.jakubhekal.datausage.managers.PreferenceManager;
+import com.jakubhekal.datausage.Utils;
 import com.jakubhekal.datausage.views.SettingsView;
 
 public class NotificationsActivity extends AppCompatActivity {

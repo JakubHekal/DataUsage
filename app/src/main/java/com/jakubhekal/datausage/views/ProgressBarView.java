@@ -5,15 +5,12 @@ import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import com.jakubhekal.datausage.R;
-import com.jakubhekal.datausage.utils.Utils;
+import com.jakubhekal.datausage.Utils;
 
 public class ProgressBarView extends RelativeLayout {
 

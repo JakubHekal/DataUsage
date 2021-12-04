@@ -1,4 +1,4 @@
-package com.jakubhekal.datausage.utils;
+package com.jakubhekal.datausage.managers;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -15,11 +15,14 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.jakubhekal.datausage.R;
-import com.jakubhekal.datausage.SettingsActivity;
+import com.jakubhekal.datausage.Utils;
+import com.jakubhekal.datausage.activities.SettingsActivity;
+import com.jakubhekal.datausage.managers.PermissionManager;
+import com.jakubhekal.datausage.managers.PreferenceManager;
 
 import java.util.Objects;
 
-public class Dialogs {
+public class DialogManager {
 
     /*public static void showHelpDialog(Context context, LayoutInflater inflater){
 
@@ -96,7 +99,7 @@ public class Dialogs {
 
         final MaterialButton button_yes = dialogView.findViewById(R.id.button_yes);
         button_yes.setOnClickListener(view -> {
-            Permissions.requestPermissions(context);
+            PermissionManager.requestPermissions(context);
             dialogs.dismiss();
         });
 

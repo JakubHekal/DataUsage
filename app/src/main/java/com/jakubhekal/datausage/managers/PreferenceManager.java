@@ -1,4 +1,4 @@
-package com.jakubhekal.datausage.utils;
+package com.jakubhekal.datausage.managers;
 
 import android.content.Context;
 import android.content.SharedPreferences;

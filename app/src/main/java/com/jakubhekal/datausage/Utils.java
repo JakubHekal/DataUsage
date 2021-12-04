@@ -1,4 +1,4 @@
-package com.jakubhekal.datausage.utils;
+package com.jakubhekal.datausage;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 
 import com.jakubhekal.datausage.R;
+import com.jakubhekal.datausage.managers.PreferenceManager;
 
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
@@ -36,77 +37,17 @@ public class Utils {
         return String.format(Locale.getDefault(), "%.1f %cB", bytes / 1000.0, ci.current());
     }
 
-    public static Long getDayStartMillis() {
-        Calendar c = Calendar.getInstance();
-        c.set(Calendar.HOUR_OF_DAY, 0);
-        c.set(Calendar.MINUTE, 0);
-        c.set(Calendar.SECOND, 0);
-        c.set(Calendar.MILLISECOND, 0);
-
-        c.add(Calendar.DAY_OF_MONTH, 0);
-
-        return c.getTimeInMillis();
-    }
-
-    public static Long getDayEndMillis() {
-        Calendar c = Calendar.getInstance();
-        c.set(Calendar.HOUR_OF_DAY, 0);
-        c.set(Calendar.MINUTE, 0);
-        c.set(Calendar.SECOND, 0);
-        c.set(Calendar.MILLISECOND, 0);
-
-        c.add(Calendar.DAY_OF_MONTH, 1);
-
-        return c.getTimeInMillis();
-    }
-
-
-    public static Long getPeriodEndMillis(int endingDay) {
-        Calendar c = Calendar.getInstance();
-        c.set(Calendar.HOUR_OF_DAY, 0);
-        c.set(Calendar.MINUTE, 0);
-        c.set(Calendar.SECOND, 0);
-        c.set(Calendar.MILLISECOND, 0);
-
-        while (c.get(Calendar.DAY_OF_MONTH) != endingDay - 1) {
-            c.add(Calendar.DATE, 1);
-        }
-
-        return c.getTimeInMillis();
-    }
-
-    public static Long getPeriodStartMillis(int startingDay) {
-        Calendar c = Calendar.getInstance();
-        c.set(Calendar.HOUR_OF_DAY, 0);
-        c.set(Calendar.MINUTE, 0);
-        c.set(Calendar.SECOND, 0);
-        c.set(Calendar.MILLISECOND, 0);
-
-        while (c.get(Calendar.DAY_OF_MONTH) != startingDay) {
-            c.add(Calendar.DATE, -1);
-        }
-
-        return c.getTimeInMillis();
-    }
-
-    public static String dateFromMillis(Long millis) {
-        Calendar c = Calendar.getInstance();
-        c.setTimeInMillis(millis);
-
-        return c.get(Calendar.DAY_OF_MONTH) + "." + (c.get(Calendar.MONTH)+1) + "." + c.get(Calendar.YEAR);
-    }
-
     public static String formatDaysReaming(Context context, int days, String date) {
         if(days > 5 || days == 0) {
-            return String.format(context.getString(R.string.period_info_main_3),days, date);
+            return String.format(context.getString(R.string.period_info_main_3), days, date);
         } else if (days > 2) {
-            return String.format(context.getString(R.string.period_info_main_2),days, date);
+            return String.format(context.getString(R.string.period_info_main_2), days, date);
         } else {
-            return String.format(context.getString(R.string.period_info_main_1),days, date);
+            return String.format(context.getString(R.string.period_info_main_1), days, date);
         }
     }
 
-    public static String getTheme(Context context){
+    public static String getThemeName(Context context){
         switch (AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
                 return context.getString(R.string.dialog_theme_dark);

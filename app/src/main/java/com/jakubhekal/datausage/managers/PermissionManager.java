@@ -1,4 +1,4 @@
-package com.jakubhekal.datausage.utils;
+package com.jakubhekal.datausage.managers;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -15,11 +15,11 @@ import android.provider.Settings;
 
 import androidx.core.app.ActivityCompat;
 
-import com.jakubhekal.datausage.MainActivity;
+import com.jakubhekal.datausage.activities.MainActivity;
 
 import static android.content.Context.POWER_SERVICE;
 
-public class Permissions {
+public class PermissionManager {
 
     public static boolean hasPermissions(Context context) {
         return hasPermissionToReadNetworkHistory(context) && hasPermissionToIgnoreBatteryOptimizations(context) && hasPermissionToReadPhoneStats(context);

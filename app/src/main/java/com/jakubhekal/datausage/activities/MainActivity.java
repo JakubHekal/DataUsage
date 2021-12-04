@@ -1,4 +1,4 @@
-package com.jakubhekal.datausage;
+package com.jakubhekal.datausage.activities;
 
 import android.annotation.TargetApi;
 import android.app.usage.NetworkStatsManager;
@@ -6,19 +6,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.jakubhekal.datausage.utils.PreferenceManager;
-import com.jakubhekal.datausage.utils.Dialogs;
-import com.jakubhekal.datausage.utils.NetworkStatsHelper;
-import com.jakubhekal.datausage.utils.Permissions;
-import com.jakubhekal.datausage.utils.Utils;
+import com.jakubhekal.datausage.DateTimeUtils;
+import com.jakubhekal.datausage.NotifyService;
+import com.jakubhekal.datausage.R;
+import com.jakubhekal.datausage.managers.NetworkUsageManager;
+import com.jakubhekal.datausage.managers.PreferenceManager;
+import com.jakubhekal.datausage.managers.DialogManager;
+import com.jakubhekal.datausage.managers.PermissionManager;
+import com.jakubhekal.datausage.Utils;
 import com.jakubhekal.datausage.views.LineView;
 import com.jakubhekal.datausage.views.ProgressBarView;
 
@@ -33,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     LineView settingsView;
 
     PreferenceManager preferenceManager;
+    NetworkUsageManager networkUsageManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         preferenceManager = new PreferenceManager(this);
+        networkUsageManager = new NetworkUsageManager(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -57,26 +58,23 @@ public class MainActivity extends AppCompatActivity {
         appsView.setOnClickListener(view -> startActivity(new Intent(this, AppsActivity.class)));
         settingsView.setOnClickListener(view -> startActivity(new Intent(this, SettingsActivity.class)));
 
-        if (Permissions.hasPermissions(this)) {
+        if (PermissionManager.hasPermissions(this)) {
             calculateOverview();
             startService(new Intent(this, NotifyService.class));
         } else {
-            Dialogs.showPermissionsDialog(this, getLayoutInflater());
+            DialogManager.showPermissionsDialog(this, getLayoutInflater());
         }
     }
 
     private void calculateOverview() {
-        NetworkStatsManager networkStatsManager = (NetworkStatsManager) getApplicationContext().getSystemService(Context.NETWORK_STATS_SERVICE);
-        NetworkStatsHelper networkStatsHelper = new NetworkStatsHelper(networkStatsManager);
-
-        int daysTillEndOfPeriod = (int) ((Utils.getPeriodEndMillis(preferenceManager.getPeriodStart()) - Utils.getDayStartMillis()) / (1000*60*60*24)) + 1;
-        Long periodUsage = networkStatsHelper.getAllBytesMobile(this, Utils.getPeriodStartMillis(preferenceManager.getPeriodStart()));
+        int daysTillEndOfPeriod = DateTimeUtils.getDaysTillPeriodEnd(preferenceManager);
+        Long periodUsage = networkUsageManager.getAllBytesMobile(DateTimeUtils.getPeriodStartMillis(preferenceManager.getPeriodStart()), DateTimeUtils.getDayEndMillis());
         Long periodLimit = preferenceManager.getPeriodLimit();
 
         periodUsageView.setData(Utils.convertFromBytes(periodUsage), Utils.convertFromBytes(periodLimit), ((float)periodUsage / periodLimit));
-        periodView.setInfo(Utils.formatDaysReaming(this, daysTillEndOfPeriod, Utils.dateFromMillis(Utils.getPeriodEndMillis(preferenceManager.getPeriodStart()))));
+        periodView.setInfo(Utils.formatDaysReaming(this, daysTillEndOfPeriod, DateTimeUtils.dateFromMillis(DateTimeUtils.getPeriodEndMillis(preferenceManager.getPeriodStart()))));
 
-        Long dailyUsage = networkStatsHelper.getAllBytesMobile(this, Utils.getDayStartMillis());
+        Long dailyUsage = networkUsageManager.getAllBytesMobile(DateTimeUtils.getDayStartMillis(), DateTimeUtils.getDayEndMillis());
         Long dailyLimit = preferenceManager.getDailyLimitCustom() ? preferenceManager.getDailyLimit() : (periodLimit - (periodUsage-dailyUsage)) / daysTillEndOfPeriod;
 
         dailyUsageView.setData(Utils.convertFromBytes(dailyUsage), Utils.convertFromBytes(dailyLimit), ((float)dailyUsage / dailyLimit));
@@ -87,11 +85,11 @@ public class MainActivity extends AppCompatActivity {
     @TargetApi(Build.VERSION_CODES.M)
     protected void onResume() {
         super.onResume();
-        if (Permissions.hasPermissions(this)) {
+        if (PermissionManager.hasPermissions(this)) {
             calculateOverview();
             startService(new Intent(this, NotifyService.class));
         } else {
-            Dialogs.showPermissionsDialog(this, getLayoutInflater());
+            DialogManager.showPermissionsDialog(this, getLayoutInflater());
         }
     }
 }

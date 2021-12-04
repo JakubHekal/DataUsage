@@ -9,7 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jakubhekal.datausage.R;
-import com.jakubhekal.datausage.utils.Utils;
+import com.jakubhekal.datausage.Utils;
 
 public class LineView extends RelativeLayout {
 

@@ -1,4 +1,4 @@
-package com.jakubhekal.datausage;
+package com.jakubhekal.datausage.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,10 +20,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.jakubhekal.datausage.utils.NetworkStatsHelper;
-import com.jakubhekal.datausage.utils.Utils;
+import com.jakubhekal.datausage.DateTimeUtils;
+import com.jakubhekal.datausage.R;
+import com.jakubhekal.datausage.Utils;
+import com.jakubhekal.datausage.managers.NetworkUsageManager;
 import com.jakubhekal.datausage.model.Package;
-import com.jakubhekal.datausage.views.PackageAdapter;
+import com.jakubhekal.datausage.PackageAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,11 +40,15 @@ public class AppsActivity extends AppCompatActivity {
     View loadingView;
     View emptyView;
 
+    NetworkUsageManager networkUsageManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(Utils.getCurrentTheme(this));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apps);
+
+        networkUsageManager = new NetworkUsageManager(getApplicationContext());
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.apps_title));
@@ -95,10 +101,7 @@ public class AppsActivity extends AppCompatActivity {
             Long dataUsage = 0L;
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                int uid = packageInfo.applicationInfo.uid;
-                NetworkStatsManager networkStatsManager = (NetworkStatsManager) getApplicationContext().getSystemService(Context.NETWORK_STATS_SERVICE);
-                NetworkStatsHelper networkStatsHelper = new NetworkStatsHelper(networkStatsManager, uid);
-                dataUsage = networkStatsHelper.getPackageAllBytesMobile(this, Utils.getDayStartMillis());
+                dataUsage = networkUsageManager.getPackageBytesMobile(packageInfo.applicationInfo.uid, DateTimeUtils.getDayStartMillis(), DateTimeUtils.getDayEndMillis());
             }
 
             if(dataUsage <= 0) {

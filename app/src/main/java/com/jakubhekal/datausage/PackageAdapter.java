@@ -1,4 +1,4 @@
-package com.jakubhekal.datausage.views;
+package com.jakubhekal.datausage;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -11,8 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.jakubhekal.datausage.R;
-import com.jakubhekal.datausage.utils.Utils;
 import com.jakubhekal.datausage.model.Package;
 
 import java.util.List;

@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.jakubhekal.datausage.R;
-import com.jakubhekal.datausage.utils.Utils;
+import com.jakubhekal.datausage.Utils;
 
 public class SettingsView extends RelativeLayout {
 

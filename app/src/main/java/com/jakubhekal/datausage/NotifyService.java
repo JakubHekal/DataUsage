@@ -8,7 +8,6 @@ import android.app.Service;
 import android.app.usage.NetworkStatsManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Handler;
 import android.os.IBinder;
@@ -16,11 +15,10 @@ import android.os.Looper;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import androidx.work.NetworkType;
 
-import com.jakubhekal.datausage.utils.NetworkStatsHelper;
-import com.jakubhekal.datausage.utils.PreferenceManager;
-import com.jakubhekal.datausage.utils.Utils;
+import com.jakubhekal.datausage.activities.SplashActivity;
+import com.jakubhekal.datausage.managers.NetworkUsageManager;
+import com.jakubhekal.datausage.managers.PreferenceManager;
 
 
 public class NotifyService extends Service {
@@ -35,6 +33,7 @@ public class NotifyService extends Service {
     NotificationManager notificationManager;
     ConnectivityManager connectivityManager;
     PreferenceManager preferenceManager;
+    NetworkUsageManager networkUsageManager;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -43,9 +42,7 @@ public class NotifyService extends Service {
         connectivityManager = getSystemService(ConnectivityManager.class);
         handler = new Handler(Looper.getMainLooper());
         preferenceManager = new PreferenceManager(getApplicationContext());
-
-        NetworkStatsManager networkStatsManager = (NetworkStatsManager) getApplicationContext().getSystemService(Context.NETWORK_STATS_SERVICE);
-        NetworkStatsHelper networkStatsHelper = new NetworkStatsHelper(networkStatsManager);
+        networkUsageManager = new NetworkUsageManager(getApplicationContext());
 
         NotificationChannel permanent_channel = new NotificationChannel(NOTIFICATION_PERMANENT_CHANNEL, getString(R.string.permanent_title), NotificationManager.IMPORTANCE_LOW);
         permanent_channel.setDescription(getString(R.string.permanent_info));
@@ -61,12 +58,11 @@ public class NotifyService extends Service {
             public void run() {
                 preferenceManager.reload();
                 boolean isMobileDataConnected = connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_MOBILE;
-                int daysTillEndOfPeriod = (int) ((Utils.getPeriodEndMillis(preferenceManager.getPeriodStart()) - Utils.getDayStartMillis()) / (1000*60*60*24)) + 1;
-                Long periodUsage = networkStatsHelper.getAllBytesMobile(getApplicationContext(), Utils.getPeriodStartMillis(preferenceManager.getPeriodStart()));
+                int daysTillEndOfPeriod = DateTimeUtils.getDaysTillPeriodEnd(preferenceManager);
+                Long periodUsage = networkUsageManager.getAllBytesMobile(DateTimeUtils.getPeriodStartMillis(preferenceManager.getPeriodStart()), DateTimeUtils.getDayEndMillis());
                 Long periodLimit = preferenceManager.getPeriodLimit();
-                Long dailyUsage = networkStatsHelper.getAllBytesMobile(getApplicationContext(), Utils.getDayStartMillis());
+                Long dailyUsage = networkUsageManager.getAllBytesMobile(DateTimeUtils.getDayStartMillis(), DateTimeUtils.getDayEndMillis());
                 Long dailyLimit = preferenceManager.getDailyLimitCustom() ? preferenceManager.getDailyLimit() : (periodLimit - (periodUsage-dailyUsage)) / daysTillEndOfPeriod;
-                float dailyPercentage = ((float)periodUsage / periodLimit);
 
                 if(preferenceManager.getNotificationPermanent()
                 ) {

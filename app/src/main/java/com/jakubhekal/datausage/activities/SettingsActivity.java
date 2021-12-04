@@ -1,15 +1,15 @@
-package com.jakubhekal.datausage;
+package com.jakubhekal.datausage.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.jakubhekal.datausage.utils.PreferenceManager;
-import com.jakubhekal.datausage.utils.Dialogs;
-import com.jakubhekal.datausage.utils.Utils;
+import com.jakubhekal.datausage.R;
+import com.jakubhekal.datausage.managers.PreferenceManager;
+import com.jakubhekal.datausage.managers.DialogManager;
+import com.jakubhekal.datausage.Utils;
 import com.jakubhekal.datausage.views.SettingsView;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -43,9 +43,9 @@ public class SettingsActivity extends AppCompatActivity {
         settingLimitView = findViewById(R.id.setting_limit);
         settingNotificationsView = findViewById(R.id.setting_notifications);
 
-        settingThemeView.setOnClickListener(view -> Dialogs.showThemeDialog(this, getLayoutInflater(),preferenceManager, SettingsActivity.class));
-        settingPeriodView.setOnClickListener(view -> Dialogs.showPeriodDialog(this, getLayoutInflater(), preferenceManager));
-        settingLimitView.setOnClickListener(view -> Dialogs.showLimitsDialog(this, getLayoutInflater(), preferenceManager));
+        settingThemeView.setOnClickListener(view -> DialogManager.showThemeDialog(this, getLayoutInflater(),preferenceManager, SettingsActivity.class));
+        settingPeriodView.setOnClickListener(view -> DialogManager.showPeriodDialog(this, getLayoutInflater(), preferenceManager));
+        settingLimitView.setOnClickListener(view -> DialogManager.showLimitsDialog(this, getLayoutInflater(), preferenceManager));
         settingNotificationsView.setOnClickListener(view -> startActivity(new Intent(this, NotificationsActivity.class)));
 
         initData();
@@ -53,7 +53,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void initData() {
         preferenceManager.reload();
-        settingThemeView.setInfo(Utils.getTheme(this));
+        settingThemeView.setInfo(Utils.getThemeName(this));
         settingPeriodView.setInfo(String.format(getString(R.string.period_info_settings),preferenceManager.getPeriodStart()));
     }
 
