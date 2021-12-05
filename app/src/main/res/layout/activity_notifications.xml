@@ -46,7 +46,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 android:visibility="gone"
-                app:settingIcon="@drawable/icon_notification_warning"
+                app:settingIcon="@drawable/icon_warning"
                 app:settingInfo="@string/notification_warning_title"
                 app:settingTitle="@string/warning_title">
 

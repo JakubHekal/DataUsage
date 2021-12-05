@@ -51,5 +51,11 @@
     <string name="warning_info">Shows when reach your limit and its half</string>
     <string name="outdated_title">Outdated data?</string>
     <string name="outdated_info">Information about apps data usage could be outdated for about an hour, due to system security measures</string>
-    <string name="apps_empty" >No app used data</string>
+    <string name="apps_empty">No app used data</string>
+    <string name="data_transmitted">Transmited</string>
+    <string name="data_received">Received</string>
+    <string name="data_total">Total</string>
+    <string name="app_detail_title">App detail</string>
+    <string name="app_detail_settings_title">App info</string>
+    <string name="app_detail_settings_info">System information about this app</string>
 </resources>

@@ -47,4 +47,10 @@
     <string name="outdated_title">Zastaralá data?</string>
     <string name="outdated_info">Informace o využití dat aplikacemi můžou být zastaralé zhruba o hodinu, z důvodů bezpečnostních opatření systému</string>
     <string name="apps_empty">Žadná aplikace nevyužila data</string>
+    <string name="data_transmitted">Odesláno</string>
+    <string name="data_received">Přijato</string>
+    <string name="data_total">Celkem</string>
+    <string name="app_detail_title">Detail aplikace</string>
+    <string name="app_detail_settings_title">Informace o aplikaci</string>
+    <string name="app_detail_settings_info">Systémové informace o této aplikaci</string>
 </resources>

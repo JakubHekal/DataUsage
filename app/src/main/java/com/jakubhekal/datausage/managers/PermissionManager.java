@@ -95,6 +95,7 @@ public class PermissionManager {
 
     public static void requestPermissionToReadNetworkHistory(Context context) {
         Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+        intent.setData(Uri.parse("package:"+context.getPackageName()));
         context.startActivity(intent);
     }
 

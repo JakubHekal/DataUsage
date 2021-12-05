@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         appsView = findViewById(R.id.apps);
         settingsView = findViewById(R.id.settings);
 
-        periodView.setOnClickListener(view -> {});
         appsView.setOnClickListener(view -> startActivity(new Intent(this, AppsActivity.class)));
         settingsView.setOnClickListener(view -> startActivity(new Intent(this, SettingsActivity.class)));
 

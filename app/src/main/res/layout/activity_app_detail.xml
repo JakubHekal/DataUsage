@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorBackground"
+    android:orientation="vertical"
+    tools:context=".activities.AppsActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:theme="@style/ToolBarStyle"
+        app:popupTheme="@style/menu_item" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:background="?attr/colorBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/main_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/app_detail_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/app_detail_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/medium"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="?attr/colorPrimaryText" />
+
+        <TextView
+            android:id="@+id/app_detail_package"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/regular"
+            android:textColor="?attr/colorSecondaryText" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:alpha="0.5"
+        android:background="?attr/colorSecondaryText" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:fontFamily="@font/medium"
+        android:text="@string/today"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="?attr/colorPrimaryText" />
+
+            <com.jakubhekal.datausage.views.LineView
+        android:id="@+id/data_today_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:imageIcon="@drawable/icon_data_total"
+        app:textTitle="@string/data_total"/>
+
+    <com.jakubhekal.datausage.views.LineView
+        android:id="@+id/data_today_received"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:imageIcon="@drawable/icon_data_received"
+        app:textTitle="@string/data_received"/>
+
+    <com.jakubhekal.datausage.views.LineView
+        android:id="@+id/data_today_transmitted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:imageIcon="@drawable/icon_data_transmitted"
+        app:textTitle="@string/data_transmitted"/>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:alpha="0.5"
+        android:background="?attr/colorSecondaryText" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/medium"
+                android:text="@string/this_period"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="?attr/colorPrimaryText" />
+
+            <com.jakubhekal.datausage.views.LineView
+                android:id="@+id/data_period_total"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                app:imageIcon="@drawable/icon_data_total"
+                app:textTitle="@string/data_total" />
+
+            <com.jakubhekal.datausage.views.LineView
+                android:id="@+id/data_period_received"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                app:imageIcon="@drawable/icon_data_received"
+                app:textTitle="@string/data_received" >
+
+            </com.jakubhekal.datausage.views.LineView>
+
+            <com.jakubhekal.datausage.views.LineView
+                android:id="@+id/data_period_transmitted"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                app:imageIcon="@drawable/icon_data_transmitted"
+                app:textTitle="@string/data_transmitted" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="0.2dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:alpha="0.5"
+                android:background="?attr/colorSecondaryText" />
+
+            <com.jakubhekal.datausage.views.LineView
+                android:id="@+id/app_detail_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                app:imageIcon="@drawable/icon_info"
+                app:textInfo="@string/app_detail_settings_info"
+                app:textTitle="@string/app_detail_settings_title" />
+
+        </LinearLayout>/
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

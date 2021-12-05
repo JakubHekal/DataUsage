@@ -1,6 +1,7 @@
 package com.jakubhekal.datausage;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jakubhekal.datausage.activities.AppDetailActivity;
+import com.jakubhekal.datausage.activities.AppsActivity;
 import com.jakubhekal.datausage.model.Package;
 
 import java.util.List;
@@ -39,6 +42,11 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageV
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
+        holder.itemView.setOnClickListener(view -> {
+            Intent i = new Intent(holder.context, AppDetailActivity.class);
+            i.putExtra("PACKAGE", packageItem.getPackageName());
+            holder.context.startActivity(i);
+        });
     }
 
     @Override
@@ -58,9 +66,6 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageV
             name = itemView.findViewById(R.id.text_app_name);
             dataUsage = itemView.findViewById(R.id.text_data_usage);
             icon = itemView.findViewById(R.id.app_icon);
-            itemView.setOnClickListener(view -> {
-
-            });
         }
     }
 }

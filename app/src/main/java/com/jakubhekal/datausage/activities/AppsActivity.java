@@ -48,7 +48,7 @@ public class AppsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apps);
 
-        networkUsageManager = new NetworkUsageManager(getApplicationContext());
+        networkUsageManager = new NetworkUsageManager(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.apps_title));
@@ -109,7 +109,6 @@ public class AppsActivity extends AppCompatActivity {
             }
 
             Package packageItem = new Package();
-            packageItem.setVersion(packageInfo.versionName);
             packageItem.setPackageName(packageInfo.packageName);
             packageItem.setDataUsage(dataUsage);
             packageList.add(packageItem);

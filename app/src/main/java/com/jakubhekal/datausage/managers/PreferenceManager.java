@@ -40,16 +40,6 @@ public class PreferenceManager {
         sharedPreferences = context.getSharedPreferences("preference", Context.MODE_PRIVATE);
     }
 
-    //First launch
-    public void setFirstLaunch(boolean isFirst){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(PREF_CONSTANTS.FIRST_LAUNCH, isFirst);
-        editor.apply();
-    }
-    public boolean isFirstLaunch() {
-        return sharedPreferences.getBoolean(PREF_CONSTANTS.FIRST_LAUNCH, true);
-    }
-
     //Night mode settings
     public void setNightMode(int mode){
         SharedPreferences.Editor editor = sharedPreferences.edit();

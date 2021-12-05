@@ -6,7 +6,7 @@
     <color name="lightPrimaryText">#202020</color>
     <color name="lightSecondaryText">#9E9E9E</color>
     <color name="lightBackground">#FFFFFF</color>
-    <color name="lightCardBackground">#fafafa</color>
+    <color name="lightCardBackground">#F5F5F5</color>
     <color name="lightIcon">#737373</color>
 
     <color name="lightHigh">#E57373</color>
