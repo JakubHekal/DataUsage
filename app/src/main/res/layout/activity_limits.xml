@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    tools:context=".activities.SettingsActivity">
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/toolbar"
@@ -29,14 +27,20 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.jakubhekal.datausage.views.LineView
-                android:id="@+id/setting_theme"
+            <com.jakubhekal.datausage.views.LineInputView
+                android:id="@+id/period_start_day"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:imageIcon="@drawable/icon_theme"
-                app:textTitle="@string/theme_title"/>
+                android:inputType="number"
+                app:imageIcon="@drawable/icon_period"
+                app:textHint="1-31"
+                app:textTitle="@string/period_start_title"
+                app:textDefaultValue="1">
+
+            </com.jakubhekal.datausage.views.LineInputView>
 
             <View
+                android:id="@+id/view4"
                 android:layout_width="match_parent"
                 android:layout_height="0.2dp"
                 android:layout_marginTop="8dp"
@@ -44,40 +48,41 @@
                 android:alpha="0.5"
                 android:background="?attr/colorSecondaryText" />
 
-            <com.jakubhekal.datausage.views.LineView
-                android:id="@+id/setting_limit"
+            <com.jakubhekal.datausage.views.LineInputView
+                android:id="@+id/period_limit_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:imageIcon="@drawable/icon_limit"
-                app:textInfo="@string/limit_info"
-                app:textTitle="@string/limit_title"/>
+                android:inputType="numberDecimal"
+                app:imageIcon="@drawable/icon_month"
+                app:textHint="0"
+                app:textLabel="MB"
+                app:textTitle="@string/period_limit_title"
+                app:textDefaultValue="0">
 
-            <com.jakubhekal.datausage.views.LineView
-                android:id="@+id/setting_notifications"
+            </com.jakubhekal.datausage.views.LineInputView>
+
+            <com.jakubhekal.datausage.views.LineSwitchView
+                android:id="@+id/daily_limit_calculated"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                app:imageIcon="@drawable/icon_notifications"
-                app:textInfo="@string/notifications_info"
-                app:textTitle="@string/notifications_title"/>
+                app:imageIcon="@drawable/icon_calculated"
+                app:textInfo="@string/daily_limit_calculated_info"
+                app:textLabel="MB"
+                app:textTitle="@string/daily_limit_calculated_title" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.2dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:alpha="0.5"
-                android:background="?attr/colorSecondaryText" />
-
-            <com.jakubhekal.datausage.views.LineView
-                android:id="@+id/github"
+            <com.jakubhekal.datausage.views.LineInputView
+                android:id="@+id/daily_limit_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:imageIcon="@drawable/icon_github"
-                app:textInfo="@string/github_info"
-                app:textTitle="@string/github_title" />
+                android:layout_marginTop="8dp"
+                android:inputType="numberDecimal"
+                app:imageIcon="@drawable/icon_day"
+                app:textHint="0"
+                app:textLabel="MB"
+                app:textTitle="@string/daily_limit_title"
+                app:textDefaultValue="0">
 
-
+            </com.jakubhekal.datausage.views.LineInputView>
 
         </LinearLayout>
 

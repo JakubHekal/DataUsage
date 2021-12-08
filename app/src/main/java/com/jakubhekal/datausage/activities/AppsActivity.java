@@ -51,7 +51,7 @@ public class AppsActivity extends AppCompatActivity {
         networkUsageManager = new NetworkUsageManager(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.apps_title));
+        toolbar.setTitle(getString(R.string.activity_title_apps));
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.menu_back);
         toolbar.setNavigationOnClickListener(v -> {

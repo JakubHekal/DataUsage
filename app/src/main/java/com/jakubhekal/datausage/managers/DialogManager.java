@@ -17,8 +17,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.jakubhekal.datausage.R;
 import com.jakubhekal.datausage.Utils;
 import com.jakubhekal.datausage.activities.SettingsActivity;
-import com.jakubhekal.datausage.managers.PermissionManager;
-import com.jakubhekal.datausage.managers.PreferenceManager;
 
 import java.util.Objects;
 
@@ -106,7 +104,7 @@ public class DialogManager {
         dialogs.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
 
-    public static void showPeriodDialog(Context context, LayoutInflater inflater, PreferenceManager preferenceManager) {
+    /*public static void showPeriodDialog(Context context, LayoutInflater inflater, PreferenceManager preferenceManager) {
 
         final View dialogView = inflater.inflate(R.layout.dialog_period, null);
 
@@ -144,7 +142,7 @@ public class DialogManager {
                 .setCancelable(true)
                 .show();
 
-        final EditText periodInput = dialogView.findViewById(R.id.periodInput);
+        final EditText periodInput = dialogView.findViewById(R.id.line_input_input);
         final CheckBox periodUnlimited = dialogView.findViewById(R.id.periodUnlimited);
         final View periodInputContainer = dialogView.findViewById(R.id.periodInputContainer);
         final EditText dayInput = dialogView.findViewById(R.id.dayInput);
@@ -178,6 +176,6 @@ public class DialogManager {
 
 
         dialogs.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-    }
+    }*/
 
 }

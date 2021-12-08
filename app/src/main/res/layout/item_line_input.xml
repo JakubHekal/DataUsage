@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    android:background="?attr/selectableItemBackground"
+    android:orientation="vertical"
+    android:paddingStart="8dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="16dp">
+
+    <ImageView
+        android:id="@+id/line_input_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="1.5dp"
+        android:layout_marginEnd="20dp"
+        android:padding="8dp"
+        app:tint="?attr/colorIcon" />
+
+    <TextView
+        android:id="@+id/line_input_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/line_input_icon"
+        android:fontFamily="@font/medium"
+        android:paddingBottom="3dp"
+        android:textColor="?attr/colorPrimaryText"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line_input_title"
+        android:layout_toEndOf="@+id/line_input_icon"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/line_input_input"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="?attr/colorAccent"
+            android:ems="10"
+            android:fontFamily="@font/regular"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:textColor="?attr/colorPrimaryText"
+            android:textColorHint="?attr/colorSecondaryText" />
+
+        <TextView
+            android:id="@+id/line_input_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/medium"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="?attr/colorSecondaryText"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</RelativeLayout>

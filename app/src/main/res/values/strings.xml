@@ -1,20 +1,22 @@
 <resources>
     <string name="app_name">Data usage</string>
     <string name="app_info">Made with &#10084; in Czechia</string>
+    <string name="app_author" translatable="false">Jakub Hekal</string>
+
+    <string name="activity_title_apps">Apps</string>
+    <string name="activity_info_apps">Todays data usage details for all apps</string>
+
+    <string name="activity_title_settings">Settings</string>
+    <string name="activity_info_settings">Manage limits, usage warnings etc.</string>
+
     <string name="menu_refresh">Refresh</string>
-    <string name="refreshed">Refreshed</string>
     <string name="this_period">This period</string>
     <string name="today">Today</string>
     <string name="day">Day</string>
-    <string name="author" translatable="false">Jakub Hekal</string>
 
-    <string name="apps_title">Apps</string>
-    <string name="apps_info">Data usage details for all apps</string>
-    <string name="settings_title">Settings</string>
-    <string name="settings_info">Manage limits, notifications etc.</string>
     <string name="theme_title">Theme</string>
     <string name="limit_title">Limits</string>
-    <string name="limit_info">Set data usage limits for day and period</string>
+    <string name="limit_info">Set data usage limits for day, period and starting day for period</string>
     <string name="period_title">Period</string>
     <string name="period_info_main_1">%1$d day remaining (%2$s)</string>
     <string name="period_info_main_2">%1$d days remaining (%2$s)</string>
@@ -22,7 +24,7 @@
     <string name="period_info_settings">New period starts %1$d. day in month</string>
     <string name="permissions_title">Permissions</string>
     <string name="notifications_title">Notifications</string>
-    <string name="notifications_info">Get notifications about your data usage</string>
+    <string name="notifications_info">Manage notifications about your data usage</string>
 
     <string name="dialog_theme_title">Choose theme</string>
     <string name="dialog_theme_dark">Dark</string>
@@ -33,10 +35,12 @@
     <string name="dialog_permissions_info">To work properly this app needs permission to read telephone records, usage data and run on background</string>
     <string name="dialog_permissions_yes">Grant</string>
 
-    <string name="dialog_period_title">New period starting day</string>
-    <string name="dialog_period_yes">Set</string>
+    <string name="period_start_title">Period starting day</string>
+    <string name="period_limit_title">Period limit</string>
+    <string name="daily_limit_title">Daily limit</string>
+    <string name="daily_limit_calculated_title">Calculated daily limit</string>
+    <string name="daily_limit_calculated_info">Your daily limit will be calculated depending on your period limit and previous daily usage</string>
 
-    <string name="dialog_limits_unlimited">Unlimited</string>
     <string name="dialog_limits_calculated">Calculated</string>
     <string name="period_end_title">End of period</string>
     <string name="statistics_title">Statistics</string>
@@ -46,7 +50,7 @@
     <string name="notification_warning_title">Usage warning</string>
     <string name="notification_warning_info">You already used %1$d% of your daily limit</string>
     <string name="permanent_title">Permanent notification</string>
-    <string name="permanent_info">Shows today\'s usage, limit and it\'s visible when you have enabled mobile data</string>
+    <string name="permanent_info">Shows todays usage, limit</string>
     <string name="warning_title">Warning notification</string>
     <string name="warning_info">Shows when reach your limit and its half</string>
     <string name="outdated_title">Outdated data?</string>
@@ -58,4 +62,6 @@
     <string name="app_detail_title">App detail</string>
     <string name="app_detail_settings_title">App info</string>
     <string name="app_detail_settings_info">System information about this app</string>
+    <string name="github_title" translatable="false">Github</string>
+    <string name="github_info">This app is open-source, check it out</string>
 </resources>

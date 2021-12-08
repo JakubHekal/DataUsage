@@ -8,12 +8,12 @@ import android.os.Bundle;
 import com.jakubhekal.datausage.R;
 import com.jakubhekal.datausage.managers.PreferenceManager;
 import com.jakubhekal.datausage.Utils;
-import com.jakubhekal.datausage.views.SettingsView;
+import com.jakubhekal.datausage.views.LineSwitchView;
 
 public class NotificationsActivity extends AppCompatActivity {
 
-    SettingsView notificationPermanentView;
-    SettingsView notificationWarningView;
+    LineSwitchView notificationPermanentView;
+    LineSwitchView notificationWarningView;
 
     PreferenceManager preferenceManager;
 
@@ -37,8 +37,8 @@ public class NotificationsActivity extends AppCompatActivity {
         notificationPermanentView = findViewById(R.id.notification_permanent);
         notificationWarningView = findViewById(R.id.notification_warning);
 
-        notificationPermanentView.setOnSwitchListener((view, state) -> preferenceManager.setNotificationPermanent(state));
-        notificationWarningView.setOnSwitchListener((view, state) -> preferenceManager.setNotificationWarning(state));
+        notificationPermanentView.addOnCheckedChangeListener((view, state) -> preferenceManager.setNotificationPermanent(state));
+        notificationWarningView.addOnCheckedChangeListener((view, state) -> preferenceManager.setNotificationWarning(state));
 
         initData();
     }

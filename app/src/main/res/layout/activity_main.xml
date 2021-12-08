@@ -66,8 +66,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.2dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:alpha="0.5"
                 android:background="?attr/colorSecondaryText" />
 
@@ -85,17 +85,18 @@
                 android:id="@+id/apps"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 app:imageIcon="@drawable/icon_apps"
-                app:textInfo="@string/apps_info"
-                app:textTitle="@string/apps_title">
+                app:textInfo="@string/activity_info_apps"
+                app:textTitle="@string/activity_title_apps">
 
             </com.jakubhekal.datausage.views.LineView>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.2dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:alpha="0.5"
                 android:background="?attr/colorSecondaryText" />
 
@@ -104,16 +105,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:imageIcon="@drawable/icon_settings"
-                app:textInfo="@string/settings_info"
-                app:textTitle="@string/settings_title"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.2dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:alpha="0.5"
-                android:background="?attr/colorSecondaryText" />
+                app:textInfo="@string/activity_info_settings"
+                app:textTitle="@string/activity_title_settings" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

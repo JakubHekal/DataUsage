@@ -29,28 +29,27 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.jakubhekal.datausage.views.SettingsView
+            <com.jakubhekal.datausage.views.LineSwitchView
                 android:id="@+id/notification_permanent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                app:settingIcon="@drawable/icon_notification_permanent"
-                app:settingInfo="@string/permanent_info"
-                app:settingTitle="@string/permanent_title">
+                app:imageIcon="@drawable/icon_notification_permanent"
+                app:textInfo="@string/permanent_info"
+                app:textTitle="@string/permanent_title">
 
-            </com.jakubhekal.datausage.views.SettingsView>
+            </com.jakubhekal.datausage.views.LineSwitchView>
 
-            <com.jakubhekal.datausage.views.SettingsView
+            <com.jakubhekal.datausage.views.LineSwitchView
                 android:id="@+id/notification_warning"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 android:visibility="gone"
-                app:settingIcon="@drawable/icon_warning"
-                app:settingInfo="@string/notification_warning_title"
-                app:settingTitle="@string/warning_title">
+                app:imageIcon="@drawable/icon_warning"
+                app:textInfo="@string/notification_warning_title"
+                app:textTitle="@string/warning_title">
 
-            </com.jakubhekal.datausage.views.SettingsView>
+            </com.jakubhekal.datausage.views.LineSwitchView>
 
 
         </LinearLayout>

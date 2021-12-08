@@ -10,7 +10,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-        android:id="@+id/app_icon"
+        android:id="@+id/line_switch_icon"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="1.5dp"
@@ -20,36 +20,35 @@
         android:layout_centerVertical="true" />
 
     <TextView
-        android:id="@+id/text_app_name"
+        android:id="@+id/line_switch_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toStartOf="@id/switch_state"
+        android:layout_toStartOf="@id/line_switch_switch"
         android:paddingBottom="3dp"
-        android:layout_toEndOf="@id/app_icon"
+        android:layout_toEndOf="@id/line_switch_icon"
         android:fontFamily="@font/medium"
         android:textColor="?attr/colorPrimaryText"
         android:textSize="16sp"/>
 
     <TextView
-        android:id="@+id/text_data_usage"
-        android:layout_below="@id/text_app_name"
+        android:id="@+id/line_switch_info"
+        android:layout_below="@id/line_switch_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toStartOf="@id/switch_state"
-        android:layout_toEndOf="@id/app_icon"
+        android:layout_toStartOf="@id/line_switch_switch"
+        android:layout_toEndOf="@id/line_switch_icon"
         android:fontFamily="@font/medium"
         android:textColor="?attr/colorIcon"
         android:textSize="13sp"/>
 
     <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switch_state"
+        android:id="@+id/line_switch_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
-        android:gravity="center"
-        android:visibility="gone" />
+        android:gravity="center" />
 
 </RelativeLayout>
