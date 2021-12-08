@@ -49,10 +49,10 @@ public class NotifyService extends Service {
         permanent_channel.setShowBadge(false);
         notificationManager.createNotificationChannel(permanent_channel);
 
-        NotificationChannel warning_channel = new NotificationChannel(NOTIFICATION_USAGE_WARNING_CHANNEL, getString(R.string.warning_title), NotificationManager.IMPORTANCE_DEFAULT);
+        /*NotificationChannel warning_channel = new NotificationChannel(NOTIFICATION_USAGE_WARNING_CHANNEL, getString(R.string.warning_title), NotificationManager.IMPORTANCE_DEFAULT);
         warning_channel.setDescription(getString(R.string.warning_info));
         warning_channel.setVibrationPattern(new long[] {1000});
-        notificationManager.createNotificationChannel(warning_channel);
+        notificationManager.createNotificationChannel(warning_channel);*/
 
         handler.postDelayed(new Runnable() {
             public void run() {

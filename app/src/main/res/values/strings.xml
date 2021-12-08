@@ -7,7 +7,7 @@
     <string name="activity_info_apps">Todays data usage details for all apps</string>
 
     <string name="activity_title_settings">Settings</string>
-    <string name="activity_info_settings">Manage limits, usage warnings etc.</string>
+    <string name="activity_info_settings">Manage limits, usage warnings, etc.</string>
 
     <string name="menu_refresh">Refresh</string>
     <string name="this_period">This period</string>
@@ -21,7 +21,6 @@
     <string name="period_info_main_1">%1$d day remaining (%2$s)</string>
     <string name="period_info_main_2">%1$d days remaining (%2$s)</string>
     <string name="period_info_main_3">%1$d days remaining (%2$s)</string>
-    <string name="period_info_settings">New period starts %1$d. day in month</string>
     <string name="permissions_title">Permissions</string>
     <string name="notifications_title">Notifications</string>
     <string name="notifications_info">Manage notifications about your data usage</string>
@@ -29,7 +28,7 @@
     <string name="dialog_theme_title">Choose theme</string>
     <string name="dialog_theme_dark">Dark</string>
     <string name="dialog_theme_light">Light</string>
-    <string name="dialog_theme_system">Controlled by system setting</string>
+    <string name="dialog_theme_system">Default system setting</string>
 
     <string name="dialog_permissions_title">Grant permissions?</string>
     <string name="dialog_permissions_info">To work properly this app needs permission to read telephone records, usage data and run on background</string>
@@ -38,10 +37,9 @@
     <string name="period_start_title">Period starting day</string>
     <string name="period_limit_title">Period limit</string>
     <string name="daily_limit_title">Daily limit</string>
-    <string name="daily_limit_calculated_title">Calculated daily limit</string>
+    <string name="daily_limit_calculated_title">Calculate daily limit</string>
     <string name="daily_limit_calculated_info">Your daily limit will be calculated depending on your period limit and previous daily usage</string>
 
-    <string name="dialog_limits_calculated">Calculated</string>
     <string name="period_end_title">End of period</string>
     <string name="statistics_title">Statistics</string>
     <string name="statistics_info">Your detailed data usage overview</string>
@@ -50,11 +48,7 @@
     <string name="notification_warning_title">Usage warning</string>
     <string name="notification_warning_info">You already used %1$d% of your daily limit</string>
     <string name="permanent_title">Permanent notification</string>
-    <string name="permanent_info">Shows todays usage, limit</string>
-    <string name="warning_title">Warning notification</string>
-    <string name="warning_info">Shows when reach your limit and its half</string>
-    <string name="outdated_title">Outdated data?</string>
-    <string name="outdated_info">Information about apps data usage could be outdated for about an hour, due to system security measures</string>
+    <string name="permanent_info">Shows todays usage and limit</string>
     <string name="apps_empty">No app used data</string>
     <string name="data_transmitted">Transmited</string>
     <string name="data_received">Received</string>

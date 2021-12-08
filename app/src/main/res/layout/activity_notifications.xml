@@ -39,18 +39,6 @@
 
             </com.jakubhekal.datausage.views.LineSwitchView>
 
-            <com.jakubhekal.datausage.views.LineSwitchView
-                android:id="@+id/notification_warning"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:visibility="gone"
-                app:imageIcon="@drawable/icon_warning"
-                app:textInfo="@string/notification_warning_title"
-                app:textTitle="@string/warning_title">
-
-            </com.jakubhekal.datausage.views.LineSwitchView>
-
 
         </LinearLayout>
 

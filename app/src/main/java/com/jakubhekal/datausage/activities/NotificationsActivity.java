@@ -13,7 +13,6 @@ import com.jakubhekal.datausage.views.LineSwitchView;
 public class NotificationsActivity extends AppCompatActivity {
 
     LineSwitchView notificationPermanentView;
-    LineSwitchView notificationWarningView;
 
     PreferenceManager preferenceManager;
 
@@ -35,10 +34,8 @@ public class NotificationsActivity extends AppCompatActivity {
         });
 
         notificationPermanentView = findViewById(R.id.notification_permanent);
-        notificationWarningView = findViewById(R.id.notification_warning);
 
         notificationPermanentView.addOnCheckedChangeListener((view, state) -> preferenceManager.setNotificationPermanent(state));
-        notificationWarningView.addOnCheckedChangeListener((view, state) -> preferenceManager.setNotificationWarning(state));
 
         initData();
     }
@@ -46,6 +43,5 @@ public class NotificationsActivity extends AppCompatActivity {
     public void initData() {
         preferenceManager.reload();
         notificationPermanentView.setSwitchState(preferenceManager.getNotificationPermanent());
-        notificationWarningView.setSwitchState(preferenceManager.getNotificationWarning());
     }
 }
