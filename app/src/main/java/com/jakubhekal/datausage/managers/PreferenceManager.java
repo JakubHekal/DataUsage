@@ -14,7 +14,7 @@ public class PreferenceManager {
 
     private static class PREF_CONSTANTS {
 
-        public static final String FIRST_LAUNCH = "first.launch";
+        public static final String LAUNCHED = "launched";
         public static final String NIGHT_MODE = "night.mode";
         public static final String PERIOD_START = "period.start";
         public static final String PERIOD_LIMIT = "period.limit";
@@ -38,6 +38,16 @@ public class PreferenceManager {
 
     public void reload() {
         sharedPreferences = context.getSharedPreferences("preference", Context.MODE_PRIVATE);
+    }
+
+    //On launch
+    public void setLaunched(boolean launched){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(PREF_CONSTANTS.LAUNCHED, launched);
+        editor.apply();
+    }
+    public boolean getLaunched() {
+        return sharedPreferences.getBoolean(PREF_CONSTANTS.LAUNCHED, true);
     }
 
     //Night mode settings

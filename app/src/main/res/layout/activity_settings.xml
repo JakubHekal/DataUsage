@@ -61,6 +61,15 @@
                 app:textInfo="@string/notifications_info"
                 app:textTitle="@string/notifications_title"/>
 
+            <com.jakubhekal.datausage.views.LineView
+                android:id="@+id/setting_permissions"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                app:imageIcon="@drawable/icon_permissions"
+                app:textInfo="@string/activity_info_permissions"
+                app:textTitle="@string/activity_title_permissions" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.2dp"

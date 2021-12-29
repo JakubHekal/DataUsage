@@ -60,9 +60,10 @@ public class MainActivity extends AppCompatActivity {
         if (PermissionManager.hasPermissions(this)) {
             calculateOverview();
             startService(new Intent(this, NotifyService.class));
-        } else {
-            DialogManager.showPermissionsDialog(this, getLayoutInflater());
+        } else if(preferenceManager.getLaunched()) {
+            startActivity(new Intent(this, PermissionsActivity.class));
         }
+        preferenceManager.setLaunched(false);
     }
 
     private void calculateOverview() {
@@ -87,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
         if (PermissionManager.hasPermissions(this)) {
             calculateOverview();
             startService(new Intent(this, NotifyService.class));
-        } else {
-            DialogManager.showPermissionsDialog(this, getLayoutInflater());
+        } else if(preferenceManager.getLaunched()) {
+            startActivity(new Intent(this, PermissionsActivity.class));
         }
     }
 }

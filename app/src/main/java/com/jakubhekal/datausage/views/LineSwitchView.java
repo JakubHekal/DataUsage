@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -69,6 +70,9 @@ public class LineSwitchView extends RelativeLayout {
     }
 
     public void addOnCheckedChangeListener(SwitchMaterial.OnCheckedChangeListener listener) {
-        inputSwitch.setOnCheckedChangeListener(listener);
+        inputSwitch.setOnClickListener(view -> {
+            SwitchMaterial switchMaterial = (SwitchMaterial) view;
+            listener.onCheckedChanged(switchMaterial, switchMaterial.isChecked());
+        });
     }
 }

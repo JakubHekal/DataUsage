@@ -4,17 +4,11 @@
     package="com.jakubhekal.datausage">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission
-        android:name="android.permission.PACKAGE_USAGE_STATS"
-        tools:ignore="ProtectedPermissions" />
-    <uses-permission
-        android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
-        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
-    <permission
-        android:name="android.permission.PACKAGE_USAGE_STATS"
-        android:protectionLevel="signature" />
+    <permission android:name="android.permission.PACKAGE_USAGE_STATS" android:protectionLevel="signature" />
 
     <application
         android:allowBackup="true"
@@ -23,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.AppDetailActivity"></activity>
+        <activity android:name=".activities.PermissionsActivity"></activity>
+        <activity android:name=".activities.AppDetailActivity" />
 
         <service
             android:name=".NotifyService"

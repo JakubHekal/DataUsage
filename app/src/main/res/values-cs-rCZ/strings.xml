@@ -3,7 +3,7 @@
     <string name="app_name">Využití dat</string>
     <string name="app_info">Vytvořeno s &#10084; v Česku</string>
     <string name="activity_title_apps">Aplikace</string>
-    <string name="activity_info_apps">Detaily dnešního využití dat všemi aplikacemi</string>
+    <string name="activity_info_apps">Detaily využití dat pro všechny aplikacemi</string>
     <string name="activity_title_settings">Nastavení</string>
     <string name="activity_info_settings">Spravuj limity, varování o využití, atd.</string>
     <string name="menu_refresh">Obnovit</string>
@@ -19,16 +19,14 @@
     <string name="dialog_theme_dark">Tmavé</string>
     <string name="dialog_theme_light">Světlé</string>
     <string name="dialog_theme_system">Výchozí nastavení systému</string>
-    <string name="dialog_permissions_title">Udělit oprávnění?</string>
-    <string name="dialog_permissions_yes">Udělit</string>
     <string name="period_start_title">Den začátku nového období</string>
     <string name="period_limit_title">Limit pro období</string>
     <string name="daily_limit_title">Denní limit</string>
     <string name="daily_limit_calculated_title">Vypočítat denní limit</string>
     <string name="period_end_title">Konec období</string>
     <string name="statistics_title">Statistiky</string>
-    <string name="notification_permanent_title">"Použito: "</string>
-    <string name="notification_permanent_info">Limit:</string>
+    <string name="notification_permanent_title">Použito: %1$s</string>
+    <string name="notification_permanent_info">Limit: %1$s</string>
     <string name="permanent_title">Trvalé oznámení</string>
     <string name="apps_empty">Žádná aplikace nevyužila data</string>
     <string name="data_transmitted">Odesláno</string>
@@ -47,6 +45,13 @@
     <string name="period_info_main_1">Zbývá %1$d den (%2$s)</string>
     <string name="period_info_main_2">Zbývají %1$d dny (%2$s)</string>
     <string name="period_info_main_3">Zbývá %1$d dní (%2$s)</string>
-    <string name="dialog_permissions_info">Pro správné fungování potřebuje tato aplikace oprávnění ke čtení telefoních záznámů, dat o využití a běžet na pozadí</string>
     <string name="daily_limit_calculated_info">Tvůj denní limit bude vypočítán na základě tvého limitu pro období a využití v předchozích dnech</string>
+    <string name="activity_title_permissions">Oprávnění</string>
+    <string name="activity_info_permissions">Pro správné fungování potřebuje tato aplikace nějáká oprávnění</string>
+    <string name="permission_ignore_battery_optimization_info">Toto umožní aplikaci neustále bežet na pozadí</string>
+    <string name="permission_ignore_battery_optimization_title">Ignorovat optimalizaci baterie</string>
+    <string name="permission_phone_title">Telefon</string>
+    <string name="permission_phone_info">Toto aplikaci umožní číst tvoje \"Subscriber ID\" potřebné pro přístup k využití dat</string>
+    <string name="permission_usage_access_title">Přístup k datům o používání</string>
+    <string name="permission_usage_access_info">Toto aplikaci umožní číst tvoje využití dat</string>
 </resources>

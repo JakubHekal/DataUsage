@@ -19,11 +19,14 @@ import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TableLayout;
 
+import com.google.android.material.tabs.TabLayout;
 import com.jakubhekal.datausage.DateTimeUtils;
 import com.jakubhekal.datausage.R;
 import com.jakubhekal.datausage.Utils;
 import com.jakubhekal.datausage.managers.NetworkUsageManager;
+import com.jakubhekal.datausage.managers.PreferenceManager;
 import com.jakubhekal.datausage.model.Package;
 import com.jakubhekal.datausage.PackageAdapter;
 
@@ -36,10 +39,12 @@ import java.util.concurrent.Executors;
 
 public class AppsActivity extends AppCompatActivity {
 
+    TabLayout tabLayout;
     RecyclerView recyclerView;
     View loadingView;
     View emptyView;
 
+    PreferenceManager preferenceManager;
     NetworkUsageManager networkUsageManager;
 
     @Override
@@ -48,6 +53,7 @@ public class AppsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apps);
 
+        preferenceManager = new PreferenceManager(this);
         networkUsageManager = new NetworkUsageManager(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -59,11 +65,30 @@ public class AppsActivity extends AppCompatActivity {
             finish();
         });
 
+        tabLayout = findViewById(R.id.tabs);
+
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         loadingView = findViewById(R.id.loading);
         emptyView = findViewById(R.id.empty);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                initData();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                initData();
+            }
+        });
 
         initData();
 
@@ -93,15 +118,18 @@ public class AppsActivity extends AppCompatActivity {
 
         List<Package> packageList = new ArrayList<>(packageInfoList.size());
         for (PackageInfo packageInfo : packageInfoList) {
-            if (packageManager.checkPermission(Manifest.permission.INTERNET,
-                    packageInfo.packageName) == PackageManager.PERMISSION_DENIED) {
+            if (packageManager.checkPermission(Manifest.permission.INTERNET, packageInfo.packageName) == PackageManager.PERMISSION_DENIED) {
                 continue;
             }
 
             Long dataUsage = 0L;
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                dataUsage = networkUsageManager.getPackageBytesMobile(packageInfo.applicationInfo.uid, DateTimeUtils.getDayStartMillis(), DateTimeUtils.getDayEndMillis());
+                if(tabLayout.getSelectedTabPosition() == 0) {
+                    dataUsage = networkUsageManager.getPackageBytesMobile(packageInfo.applicationInfo.uid, DateTimeUtils.getDayStartMillis(), DateTimeUtils.getDayEndMillis());
+                } else {
+                    dataUsage = networkUsageManager.getPackageBytesMobile(packageInfo.applicationInfo.uid, DateTimeUtils.getPeriodStartMillis(preferenceManager.getPeriodStart()), DateTimeUtils.getPeriodEndMillis(preferenceManager.getPeriodStart()));
+                }
             }
 
             if(dataUsage <= 0) {

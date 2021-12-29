@@ -4,7 +4,7 @@
     <string name="app_author" translatable="false">Jakub Hekal</string>
 
     <string name="activity_title_apps">Apps</string>
-    <string name="activity_info_apps">Todays data usage details for all apps</string>
+    <string name="activity_info_apps">Data usage details for all apps</string>
 
     <string name="activity_title_settings">Settings</string>
     <string name="activity_info_settings">Manage limits, usage warnings, etc.</string>
@@ -30,10 +30,6 @@
     <string name="dialog_theme_light">Light</string>
     <string name="dialog_theme_system">Default system setting</string>
 
-    <string name="dialog_permissions_title">Grant permissions?</string>
-    <string name="dialog_permissions_info">To work properly this app needs permission to read telephone records, usage data and run on background</string>
-    <string name="dialog_permissions_yes">Grant</string>
-
     <string name="period_start_title">Period starting day</string>
     <string name="period_limit_title">Period limit</string>
     <string name="daily_limit_title">Daily limit</string>
@@ -58,4 +54,12 @@
     <string name="app_detail_settings_info">System information about this app</string>
     <string name="github_title" translatable="false">Github</string>
     <string name="github_info">This app is open-source, check it out</string>
+    <string name="activity_title_permissions">Permissions</string>
+    <string name="activity_info_permissions">To work properly this app needs some permissions</string>
+    <string name="permission_ignore_battery_optimization_title">Ignore battery optimization</string>
+    <string name="permission_ignore_battery_optimization_info">This will allow this app to run in background constantly</string>
+    <string name="permission_phone_title">Phone</string>
+    <string name="permission_phone_info">This will allow this app to read your \"Subscriber ID\" needed for access to data usage</string>
+    <string name="permission_usage_access_title">Usage data access</string>
+    <string name="permission_usage_access_info">This will allow this app to read your data usag</string>
 </resources>

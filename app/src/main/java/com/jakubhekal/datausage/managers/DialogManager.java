@@ -86,22 +86,4 @@ public class DialogManager {
         });
     }
 
-    public static void showPermissionsDialog(Context context, LayoutInflater inflater) {
-
-        final View dialogView = inflater.inflate(R.layout.dialog_permissions, null);
-
-        AlertDialog dialogs = new MaterialAlertDialogBuilder(context)
-                .setView(dialogView)
-                .setCancelable(false)
-                .show();
-
-        final MaterialButton button_yes = dialogView.findViewById(R.id.button_yes);
-        button_yes.setOnClickListener(view -> {
-            PermissionManager.requestPermissions(context);
-            dialogs.dismiss();
-        });
-
-        dialogs.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-    }
-
 }

@@ -1,14 +1,10 @@
 package com.jakubhekal.datausage.managers;
 
-import android.Manifest;
 import android.app.usage.NetworkStats;
 import android.app.usage.NetworkStatsManager;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.telephony.TelephonyManager;
-
-import androidx.core.app.ActivityCompat;
 
 public class NetworkUsageManager {
 
@@ -77,7 +73,7 @@ public class NetworkUsageManager {
 
     private String getSubscriberId() {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+        if (PermissionManager.hasPermissionToReadPhoneStats(context)) {
             return tm.getSubscriberId();
         }
         return "";

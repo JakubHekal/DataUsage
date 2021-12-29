@@ -39,33 +39,9 @@ public class PermissionManager {
         int mode = appOps.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
                 Process.myUid(), context.getPackageName());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            mode = appOps.unsafeCheckOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
-                    Process.myUid(), context.getPackageName());
+            mode = appOps.unsafeCheckOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS, Process.myUid(), context.getPackageName());
         }
-        if (mode == AppOpsManager.MODE_ALLOWED) {
-            return true;
-        }
-        appOps.startWatchingMode(AppOpsManager.OPSTR_GET_USAGE_STATS,
-                context.getPackageName(),
-                new AppOpsManager.OnOpChangedListener() {
-                    @Override
-                    @TargetApi(Build.VERSION_CODES.M)
-                    public void onOpChanged(String op, String packageName) {
-                        int mode = appOps.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
-                                Process.myUid(), context.getPackageName());
-                        if (mode != AppOpsManager.MODE_ALLOWED) {
-                            return;
-                        }
-                        appOps.stopWatchingMode(this);
-                        Intent intent = new Intent(context, MainActivity.class);
-                        if (intent.getExtras() != null) {
-                            intent.putExtras(intent.getExtras());
-                        }
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(intent);
-                    }
-                });
-        return false;
+        return mode == AppOpsManager.MODE_ALLOWED;
     }
 
     public static void requestPermissions(Context context) {

@@ -16,6 +16,27 @@
         android:theme="@style/ToolBarStyle"
         app:popupTheme="@style/menu_item" />
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:tabIndicatorColor="?attr/colorPrimary"
+        app:tabSelectedTextColor="?attr/colorPrimary"
+        app:tabTextColor="?attr/colorSecondaryText">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/today" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/period_title" />
+
+    </com.google.android.material.tabs.TabLayout>
+
     <LinearLayout
         android:id="@+id/empty"
         android:layout_width="match_parent"

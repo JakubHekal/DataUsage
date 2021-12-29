@@ -18,6 +18,7 @@ public class SettingsActivity extends AppCompatActivity {
     LineView settingThemeView;
     LineView settingLimitView;
     LineView settingNotificationsView;
+    LineView settingPermissionsView;
 
     PreferenceManager preferenceManager;
 
@@ -41,10 +42,12 @@ public class SettingsActivity extends AppCompatActivity {
         settingThemeView = findViewById(R.id.setting_theme);
         settingLimitView = findViewById(R.id.setting_limit);
         settingNotificationsView = findViewById(R.id.setting_notifications);
+        settingPermissionsView = findViewById(R.id.setting_permissions);
 
         settingThemeView.setOnClickListener(view -> DialogManager.showThemeDialog(this, getLayoutInflater(),preferenceManager, SettingsActivity.class));
         settingLimitView.setOnClickListener(view -> startActivity(new Intent(this, LimitsActivity.class)));
         settingNotificationsView.setOnClickListener(view -> startActivity(new Intent(this, NotificationsActivity.class)));
+        settingPermissionsView.setOnClickListener(view -> startActivity(new Intent(this, PermissionsActivity.class)));
 
         initData();
     }
