@@ -13,6 +13,7 @@
         <item name="colorPrimaryText">@color/lightPrimaryText</item>
         <item name="colorSecondaryText">@color/lightSecondaryText</item>
         <item name="colorIcon">@color/lightIcon</item>
+        <item name="colorBorder">@color/lightBorder</item>
         <item name="colorBackground">@color/lightBackground</item>
         <item name="colorCardBackground">@color/lightCardBackground</item>
         <item name="colorLow">@color/lightLow</item>
@@ -33,6 +34,7 @@
         <item name="colorPrimaryText">@color/darkPrimaryText</item>
         <item name="colorSecondaryText">@color/darkSecondaryText</item>
         <item name="colorIcon">@color/darkIcon</item>
+        <item name="colorBorder">@color/darkBorder</item>
         <item name="colorBackground">@color/darkBackground</item>
         <item name="colorCardBackground">@color/darkCardBackground</item>
         <item name="colorLow">@color/darkLow</item>

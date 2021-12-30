@@ -8,6 +8,7 @@
     <color name="lightBackground">#FFFFFF</color>
     <color name="lightCardBackground">#F5F5F5</color>
     <color name="lightIcon">#737373</color>
+    <color name="lightBorder">#809E9E9E</color>
 
     <color name="lightHigh">#E57373</color>
     <color name="lightMedium">#FFB74D</color>
@@ -21,6 +22,7 @@
     <color name="darkBackground">#1b1b1d</color>
     <color name="darkCardBackground">#3b3b3b</color>
     <color name="darkIcon">#9AA0A6</color>
+    <color name="darkBorder">#809AA0A6</color>
 
     <color name="darkHigh">#D32F2F</color>
     <color name="darkMedium">#F57C00</color>

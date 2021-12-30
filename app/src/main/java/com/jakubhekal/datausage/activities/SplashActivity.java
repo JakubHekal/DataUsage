@@ -27,9 +27,8 @@ public class SplashActivity extends AppCompatActivity {
 
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
 
-            Bundle bundle = ActivityOptions.makeCustomAnimation(SplashActivity.this, android.R.anim.fade_in,android.R.anim.fade_out).toBundle();
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-            startActivity(intent,bundle);
+            startActivity(intent);
             finish();
 
         },750);

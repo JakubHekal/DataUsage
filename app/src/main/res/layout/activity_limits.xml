@@ -45,8 +45,7 @@
                 android:layout_height="0.2dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:alpha="0.5"
-                android:background="?attr/colorSecondaryText" />
+                android:background="?attr/colorBorder" />
 
             <com.jakubhekal.datausage.views.LineInputView
                 android:id="@+id/period_limit_input"

@@ -62,4 +62,6 @@
     <string name="permission_phone_info">This will allow this app to read your \"Subscriber ID\" needed for access to data usage</string>
     <string name="permission_usage_access_title">Usage data access</string>
     <string name="permission_usage_access_info">This will allow this app to read your data usag</string>
+    <string name="permissions_missing_title">Missing permissions</string>
+    <string name="permissions_missing_info">To work properly this app needs some permissions. Click for more information</string>
 </resources>

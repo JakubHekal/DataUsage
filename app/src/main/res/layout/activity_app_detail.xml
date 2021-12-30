@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/regular"
-            android:textColor="?attr/colorSecondaryText" />
+            android:textColor="?attr/colorBorder" />
     </LinearLayout>
 
             <View
@@ -65,8 +65,7 @@
                 android:layout_height="0.2dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
-                android:alpha="0.5"
-                android:background="?attr/colorSecondaryText" />
+                android:background="?attr/colorBorder" />
 
     <TextView
         android:id="@+id/textView4"
@@ -108,8 +107,7 @@
                 android:layout_height="0.2dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
-                android:alpha="0.5"
-                android:background="?attr/colorSecondaryText" />
+                android:background="?attr/colorBorder" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -153,8 +151,7 @@
                 android:layout_height="0.2dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:alpha="0.5"
-                android:background="?attr/colorSecondaryText" />
+                android:background="?attr/colorBorder" />
 
             <com.jakubhekal.datausage.views.LineView
                 android:id="@+id/app_detail_info"

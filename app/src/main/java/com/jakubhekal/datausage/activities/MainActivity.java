@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressBarView dailyUsageView;
     ProgressBarView periodUsageView;
 
+    LineView missingPermissionsView;
     LineView periodView;
     LineView appsView;
     LineView settingsView;
@@ -50,20 +52,22 @@ public class MainActivity extends AppCompatActivity {
         dailyUsageView = findViewById(R.id.daily_usage);
         periodUsageView = findViewById(R.id.monthly_usage);
 
+        missingPermissionsView = findViewById(R.id.missing_permissions);
         periodView = findViewById(R.id.period);
         appsView = findViewById(R.id.apps);
         settingsView = findViewById(R.id.settings);
 
+        missingPermissionsView.setOnClickListener(view -> startActivity(new Intent(this, PermissionsActivity.class)));
         appsView.setOnClickListener(view -> startActivity(new Intent(this, AppsActivity.class)));
         settingsView.setOnClickListener(view -> startActivity(new Intent(this, SettingsActivity.class)));
 
         if (PermissionManager.hasPermissions(this)) {
             calculateOverview();
             startService(new Intent(this, NotifyService.class));
-        } else if(preferenceManager.getLaunched()) {
-            startActivity(new Intent(this, PermissionsActivity.class));
+            missingPermissionsView.setVisibility(View.GONE);
+        } else {
+            missingPermissionsView.setVisibility(View.VISIBLE);
         }
-        preferenceManager.setLaunched(false);
     }
 
     private void calculateOverview() {
@@ -88,8 +92,9 @@ public class MainActivity extends AppCompatActivity {
         if (PermissionManager.hasPermissions(this)) {
             calculateOverview();
             startService(new Intent(this, NotifyService.class));
-        } else if(preferenceManager.getLaunched()) {
-            startActivity(new Intent(this, PermissionsActivity.class));
+            missingPermissionsView.setVisibility(View.GONE);
+        } else {
+            missingPermissionsView.setVisibility(View.VISIBLE);
         }
     }
 }

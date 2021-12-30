@@ -54,4 +54,6 @@
     <string name="permission_phone_info">Toto aplikaci umožní číst tvoje \"Subscriber ID\" potřebné pro přístup k využití dat</string>
     <string name="permission_usage_access_title">Přístup k datům o používání</string>
     <string name="permission_usage_access_info">Toto aplikaci umožní číst tvoje využití dat</string>
+    <string name="permissions_missing_title">Chybějící oprávnění</string>
+    <string name="permissions_missing_info">Pro správné fungování potřebuje tato aplikace nějáká oprávnění. Klikni pro více informací</string>
 </resources>

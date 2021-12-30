@@ -6,6 +6,7 @@
         <attr name="colorPrimaryText" format="color"/>
         <attr name="colorSecondaryText" format="color"/>
         <attr name="colorIcon" format="color"/>
+        <attr name="colorBorder" format="color"></attr>
         <attr name="colorBackground" format="color"/>
         <attr name="colorCardBackground" format="color"/>
         <attr name="colorLow" format="color"/>
@@ -17,7 +18,7 @@
         <attr name="textTitle" format="string"/>
         <attr name="textInfo" format="string"/>
         <attr name="imageIcon" format="reference"/>
-        <attr name="tintIcon" format="integer"/>
+        <attr name="tintIcon" format="color"/>
         <attr name="textLabel" format="string"/>
         <attr name="textHint" format="string"></attr>
         <attr name="textDefaultValue" format="string"></attr>
