@@ -1,5 +1,7 @@
 package com.jakubhekal.datausage;
 
+import android.util.Log;
+
 import com.jakubhekal.datausage.managers.PreferenceManager;
 
 import java.util.Calendar;
@@ -37,9 +39,11 @@ public class DateTimeUtils {
         c.set(Calendar.SECOND, 0);
         c.set(Calendar.MILLISECOND, 0);
 
-        while (c.get(Calendar.DAY_OF_MONTH) != endingDay - 1) {
+        while (c.get(Calendar.DAY_OF_MONTH) != endingDay) {
             c.add(Calendar.DATE, 1);
         }
+
+        c.add(Calendar.DATE, -1);
 
         return c.getTimeInMillis();
     }

@@ -44,7 +44,15 @@ public class LimitsActivity extends AppCompatActivity {
         inputDailyLimitView = findViewById(R.id.daily_limit_input);
         switchDailyLimitCalculatedView = findViewById(R.id.daily_limit_calculated);
 
-        inputPeriodStartView.addOnTextChangedListener(newText -> preferenceManager.setPeriodStart(Integer.parseInt(newText)));
+        inputPeriodStartView.addOnTextChangedListener(newText -> {
+            int day = Integer.parseInt(newText);
+            int clampedDay = Math.max(1, Math.min(31, day));
+            preferenceManager.setPeriodStart(clampedDay);
+            if(day != clampedDay) {
+                inputPeriodStartView.setInputValue(String.valueOf(clampedDay));
+                inputPeriodStartView.setInputSelection(String.valueOf(clampedDay).length());
+            }
+        });
 
         inputPeriodLimitView.addOnTextChangedListener(newText -> preferenceManager.setPeriodLimit(Integer.parseInt(newText) * 1000000L));
 

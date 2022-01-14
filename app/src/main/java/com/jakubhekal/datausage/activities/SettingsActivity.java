@@ -4,13 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.jakubhekal.datausage.R;
 import com.jakubhekal.datausage.managers.PreferenceManager;
 import com.jakubhekal.datausage.managers.DialogManager;
 import com.jakubhekal.datausage.Utils;
-import com.jakubhekal.datausage.views.LineSwitchView;
 import com.jakubhekal.datausage.views.LineView;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -19,6 +19,7 @@ public class SettingsActivity extends AppCompatActivity {
     LineView settingLimitView;
     LineView settingNotificationsView;
     LineView settingPermissionsView;
+    LineView githubView;
 
     PreferenceManager preferenceManager;
 
@@ -43,11 +44,13 @@ public class SettingsActivity extends AppCompatActivity {
         settingLimitView = findViewById(R.id.setting_limit);
         settingNotificationsView = findViewById(R.id.setting_notifications);
         settingPermissionsView = findViewById(R.id.setting_permissions);
+        githubView = findViewById(R.id.github);
 
-        settingThemeView.setOnClickListener(view -> DialogManager.showThemeDialog(this, getLayoutInflater(),preferenceManager, SettingsActivity.class));
+        settingThemeView.setOnClickListener(view -> DialogManager.showThemeDialog(this, getLayoutInflater(), preferenceManager, SettingsActivity.class));
         settingLimitView.setOnClickListener(view -> startActivity(new Intent(this, LimitsActivity.class)));
         settingNotificationsView.setOnClickListener(view -> startActivity(new Intent(this, NotificationsActivity.class)));
         settingPermissionsView.setOnClickListener(view -> startActivity(new Intent(this, PermissionsActivity.class)));
+        githubView.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/JakubHekal/DataUsage"))));
 
         initData();
     }

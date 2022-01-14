@@ -42,12 +42,6 @@
         <item name="colorHigh">@color/darkHigh</item>
     </style>
 
-
-    <style name="AppTheme.Transparent" parent="AppTheme">
-        <item name="android:windowShowWallpaper">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-    </style>
-
     <style name="ToolBarStyle" parent="ThemeOverlay.MaterialComponents.Light">
         <item name="android:textColorPrimary">?attr/colorPrimaryText</item>
         <item name="fontFamily">@font/medium</item>
@@ -56,12 +50,5 @@
 
     <style name="menu_item" parent="ThemeOverlay.MaterialComponents.Light">
         <item name="android:textColor">?attr/colorPrimaryText</item>
-    </style>
-
-    <style name="TabText" parent="@android:style/TextAppearance.Medium">
-        <item name="android:textSize">15sp</item>
-        <item name="textAllCaps">false</item>
-        <item name="android:textColor">?attr/colorPrimaryText</item>
-        <item name="android:fontFamily">@font/bold</item>
     </style>
 </resources>

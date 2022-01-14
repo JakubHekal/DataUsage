@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.PowerManager;
 import android.os.Process;
 import android.provider.Settings;
+import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 
@@ -70,9 +71,25 @@ public class PermissionManager {
     }
 
     public static void requestPermissionToReadNetworkHistory(Context context) {
-        Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
-        intent.setData(Uri.parse("package:"+context.getPackageName()));
-        context.startActivity(intent);
+        requestPermissionToReadNetworkHistory(context, true);
+    }
+
+    public static void requestPermissionToReadNetworkHistory(Context context, boolean includeData) {
+        try {
+            Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+            if(includeData) {
+                intent.setData(Uri.parse("package:" + context.getPackageName()));
+            }
+            context.startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+            if(includeData) {
+                requestPermissionToReadNetworkHistory(context, false);
+            } else {
+                Toast.makeText(context, "Unable to request permission", Toast.LENGTH_LONG);
+            }
+        }
+
     }
 
 }

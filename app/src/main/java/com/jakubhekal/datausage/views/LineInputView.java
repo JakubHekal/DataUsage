@@ -73,6 +73,8 @@ public class LineInputView extends RelativeLayout {
         inputEdit.setText(value);
     }
 
+    public void setInputSelection(int index) { inputEdit.setSelection(index); }
+
     public void addOnTextChangedListener(OnTextChangedListener listener) {
         this.listener = listener;
         inputEdit.addTextChangedListener(new TextWatcher() {

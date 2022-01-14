@@ -62,7 +62,6 @@ public class ProgressBarView extends RelativeLayout {
     }
 
     public void setData(String value, String limit, float percentage){
-        Log.d("S", String.valueOf(Math.round(percentage * 1000)));
         progressBar.setProgress(Math.round(percentage * 1000));
         textValue.setText(value);
         textLimit.setText(limit);
