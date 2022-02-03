@@ -5,8 +5,6 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.app.usage.NetworkStatsManager;
-import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Handler;
@@ -16,7 +14,7 @@ import android.os.Looper;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
-import com.jakubhekal.datausage.activities.SplashActivity;
+import com.jakubhekal.datausage.activities.MainActivity;
 import com.jakubhekal.datausage.managers.NetworkUsageManager;
 import com.jakubhekal.datausage.managers.PreferenceManager;
 
@@ -44,8 +42,8 @@ public class NotifyService extends Service {
         preferenceManager = new PreferenceManager(getApplicationContext());
         networkUsageManager = new NetworkUsageManager(getApplicationContext());
 
-        NotificationChannel permanent_channel = new NotificationChannel(NOTIFICATION_PERMANENT_CHANNEL, getString(R.string.permanent_title), NotificationManager.IMPORTANCE_LOW);
-        permanent_channel.setDescription(getString(R.string.permanent_info));
+        NotificationChannel permanent_channel = new NotificationChannel(NOTIFICATION_PERMANENT_CHANNEL, getString(R.string.setting_notification_permanent_title), NotificationManager.IMPORTANCE_LOW);
+        permanent_channel.setDescription(getString(R.string.setting_notification_permanent_info));
         permanent_channel.setShowBadge(false);
         notificationManager.createNotificationChannel(permanent_channel);
 
@@ -79,12 +77,11 @@ public class NotifyService extends Service {
     }
 
     private void showPermanentNotification(String usage, String limit) {
-        Intent appIntent = new Intent(getApplicationContext(), SplashActivity.class);
+        Intent appIntent = new Intent(getApplicationContext(), MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, appIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), NOTIFICATION_PERMANENT_CHANNEL)
                 .setSmallIcon(R.drawable.icon_data_usage)
-                .setColor(getColor(R.color.lightPrimary))
                 .setContentTitle(String.format(getString(R.string.notification_permanent_title), usage))
                 .setContentText(String.format(getString(R.string.notification_permanent_info), limit))
                 .setSilent(true)
@@ -100,7 +97,7 @@ public class NotifyService extends Service {
     }
 
     private void showWarningNotification(int percent) {
-        Intent appIntent = new Intent(getApplicationContext(), SplashActivity.class);
+        Intent appIntent = new Intent(getApplicationContext(), MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, appIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), NOTIFICATION_USAGE_WARNING_CHANNEL)

@@ -1,54 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="8dp"
-    android:paddingEnd="16dp"
-    android:paddingTop="16dp"
-    android:paddingBottom="16dp"
     android:background="?attr/selectableItemBackground"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:gravity="center_vertical"
+    android:paddingStart="24dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="16dp">
 
-    <ImageView
-        android:id="@+id/line_switch_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="1.5dp"
-        android:padding="8dp"
-        android:layout_marginEnd="20dp"
-        app:tint="?attr/colorIcon"
-        android:layout_centerVertical="true" />
-
-    <TextView
-        android:id="@+id/line_switch_title"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toStartOf="@id/line_switch_switch"
-        android:paddingBottom="3dp"
-        android:layout_toEndOf="@id/line_switch_icon"
-        android:fontFamily="@font/medium"
-        android:textColor="?attr/colorPrimaryText"
-        android:textSize="16sp"/>
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/line_switch_info"
-        android:layout_below="@id/line_switch_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toStartOf="@id/line_switch_switch"
-        android:layout_toEndOf="@id/line_switch_icon"
-        android:fontFamily="@font/medium"
-        android:textColor="?attr/colorIcon"
-        android:textSize="13sp"/>
+        <TextView
+            android:id="@+id/line_switch_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingBottom="3dp"
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+            android:textColor="?android:attr/textColorPrimary" />
+
+        <TextView
+            android:id="@+id/line_switch_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            android:textColor="?android:attr/textColorSecondary" />
+
+    </LinearLayout>
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/line_switch_switch"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
+        android:layout_height="match_parent"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_weight="0"
         android:gravity="center" />
 
-</RelativeLayout>
+</LinearLayout>

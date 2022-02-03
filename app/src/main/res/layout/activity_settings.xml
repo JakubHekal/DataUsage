@@ -1,93 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".activities.SettingsActivity">
 
-    <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:background="?attr/colorBackground"
-        android:elevation="0dp"
-        android:theme="@style/ToolBarStyle"
-        app:popupTheme="@style/menu_item"/>
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/collapsingToolbarLayoutLargeSize"
+            app:collapsedTitleTextAppearance="@style/Material3Theme.AppBarCollapsedTitle"
+            app:expandedTitleMarginStart="24dp"
+            app:expandedTitleTextAppearance="@style/Material3Theme.AppBarExpandedTitle"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="0dp"
+                app:layout_collapseMode="pin" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
-        android:background="?attr/colorBackground"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:id="@+id/main_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/settings_category_appearance"
+                android:textColor="?attr/colorPrimary"
+                android:textStyle="bold" />
 
             <com.jakubhekal.datausage.views.LineView
                 android:id="@+id/setting_theme"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:imageIcon="@drawable/icon_theme"
-                app:textTitle="@string/theme_title"/>
+                android:layout_height="match_parent"
+                app:textTitle="@string/setting_theme_title">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.2dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="?attr/colorBorder" />
+            </com.jakubhekal.datausage.views.LineView>
 
-            <com.jakubhekal.datausage.views.LineView
-                android:id="@+id/setting_limit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:imageIcon="@drawable/icon_limit"
-                app:textInfo="@string/limit_info"
-                app:textTitle="@string/limit_title"/>
-
-            <com.jakubhekal.datausage.views.LineView
-                android:id="@+id/setting_notifications"
+            <com.jakubhekal.datausage.views.LineSwitchView
+                android:id="@+id/setting_true_dark"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                app:imageIcon="@drawable/icon_notifications"
-                app:textInfo="@string/notifications_info"
-                app:textTitle="@string/notifications_title"/>
+                android:visibility="gone"
+                app:textTitle="True dark mode" />
 
-            <com.jakubhekal.datausage.views.LineView
-                android:id="@+id/setting_permissions"
+            <com.jakubhekal.datausage.views.LineSwitchView
+                android:id="@+id/setting_material_you"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                app:imageIcon="@drawable/icon_permissions"
-                app:textInfo="@string/activity_info_permissions"
-                app:textTitle="@string/activity_title_permissions" />
+                android:visibility="gone"
+                app:textTitle="Material you">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.2dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="?attr/colorBorder" />
+            </com.jakubhekal.datausage.views.LineSwitchView>
 
-            <com.jakubhekal.datausage.views.LineView
-                android:id="@+id/github"
+            <TextView
+                android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:imageIcon="@drawable/icon_github"
-                app:textInfo="@string/github_info"
-                app:textTitle="@string/github_title" />
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/settings_category_limits"
+                android:textColor="?attr/colorPrimary"
+                android:textStyle="bold" />
 
+            <com.jakubhekal.datausage.views.LineView
+                android:id="@+id/setting_period_start_day"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:textTitle="@string/setting_period_starting_day_title" />
 
+            <com.jakubhekal.datausage.views.LineView
+                android:id="@+id/setting_period_limit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:textTitle="@string/setting_period_limit_title" />
+
+            <com.jakubhekal.datausage.views.LineSwitchView
+                android:id="@+id/setting_daily_limit_calculated"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:textInfo="@string/setting_daily_limit_calculated_info"
+                app:textLabel="MB"
+                app:textTitle="@string/setting_daily_limit_calculated_title">
+
+            </com.jakubhekal.datausage.views.LineSwitchView>
+
+            <com.jakubhekal.datausage.views.LineView
+                android:id="@+id/setting_daily_limit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:textTitle="@string/setting_daily_limit_title">
+
+            </com.jakubhekal.datausage.views.LineView>
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/settings_category_notifications"
+                android:textColor="?attr/colorPrimary"
+                android:textStyle="bold" />
+
+            <com.jakubhekal.datausage.views.LineSwitchView
+                android:id="@+id/setting_notification_permanent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:textInfo="@string/setting_notification_permanent_info"
+                app:textTitle="@string/setting_notification_permanent_title" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/settings_category_permissions"
+                android:textColor="?attr/colorPrimary"
+                android:textStyle="bold" />
+
+            <com.jakubhekal.datausage.views.LineSwitchView
+                android:id="@+id/setting_permission_phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:textTitle="@string/setting_permission_phone_title"
+                app:textInfo="@string/setting_permission_phone_info"/>
+
+            <com.jakubhekal.datausage.views.LineSwitchView
+                android:id="@+id/setting_permission_usage_access"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:textTitle="@string/setting_permission_usage_access_title"
+                app:textInfo="@string/setting_permission_usage_access_info">
+
+            </com.jakubhekal.datausage.views.LineSwitchView>
+
+            <com.jakubhekal.datausage.views.LineSwitchView
+                android:id="@+id/setting_permission_ignore_battery_optimization"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:textTitle="@string/setting_permission_ignore_battery_optimization_title"
+                app:textInfo="@string/setting_permission_ignore_battery_optimization_info"/>
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/settings_category_information"
+                android:textColor="?attr/colorPrimary"
+                android:textStyle="bold" />
+
+            <com.jakubhekal.datausage.views.LineView
+                android:id="@+id/setting_information_github"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:textInfo="@string/setting_information_github_info"
+                app:textTitle="@string/setting_information_github_title"/>
 
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

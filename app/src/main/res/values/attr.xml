@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="AppTheme">
-        <attr name="colorPrimary" format="color"/>
-        <attr name="colorSecondary" format="color"/>
-        <attr name="colorPrimaryText" format="color"/>
-        <attr name="colorSecondaryText" format="color"/>
-        <attr name="colorIcon" format="color"/>
-        <attr name="colorBorder" format="color"></attr>
-        <attr name="colorBackground" format="color"/>
-        <attr name="colorCardBackground" format="color"/>
-        <attr name="colorLow" format="color"/>
-        <attr name="colorMedium" format="color"/>
-        <attr name="colorHigh" format="color"/>
-    </declare-styleable>
-
     <declare-styleable name="LineView">
         <attr name="textTitle" format="string"/>
         <attr name="textInfo" format="string"/>
@@ -29,5 +15,9 @@
         <attr name="textBigTitle" format="string"/>
         <attr name="textValue" format="string"/>
         <attr name="textLimit" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="UsageBarView">
+        <attr name="textPercentageLabel" format="string"/>
     </declare-styleable>
 </resources>

@@ -41,7 +41,6 @@ public class AppDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(Utils.getCurrentTheme(this));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_detail);
 
@@ -50,9 +49,9 @@ public class AppDetailActivity extends AppCompatActivity {
         PackageManager packageManager = getPackageManager();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.app_detail_title));
+        toolbar.setTitle(R.string.app_detail_title);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.menu_back);
+        toolbar.setNavigationIcon(R.drawable.icon_arrow_back);
         toolbar.setNavigationOnClickListener(v -> {
             setResult(RESULT_CANCELED,null);
             finish();

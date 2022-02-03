@@ -48,15 +48,19 @@ public class LineSwitchView extends RelativeLayout {
         inflate(context, R.layout.item_line_switch,this);
         TypedArray arr = context.obtainStyledAttributes(attrs,R.styleable.LineView, styleAttr,0);
 
-        imageIcon = findViewById(R.id.line_switch_icon);
+        //imageIcon = findViewById(R.id.line_switch_icon);
         textTitle = findViewById(R.id.line_switch_title);
         textInfo = findViewById(R.id.line_switch_info);
         inputSwitch = findViewById(R.id.line_switch_switch);
 
-        imageIcon.setImageDrawable(arr.getDrawable(R.styleable.LineView_imageIcon));
-        imageIcon.setImageTintList(ColorStateList.valueOf(arr.getColor(R.styleable.LineView_tintIcon, Utils.getAttrColor(context,R.attr.colorIcon))));
+        //imageIcon.setImageDrawable(arr.getDrawable(R.styleable.LineView_imageIcon));
+        //imageIcon.setImageTintList(ColorStateList.valueOf(arr.getColor(R.styleable.LineView_tintIcon, Utils.getAttrColor(context,R.attr.colorIcon))));
         textTitle.setText(arr.getText(R.styleable.LineView_textTitle));
-        textInfo.setText(arr.getText(R.styleable.LineView_textInfo));
+        if(arr.getText(R.styleable.LineView_textInfo) == null) {
+            textInfo.setVisibility(GONE);
+        } else {
+            textInfo.setText(arr.getText(R.styleable.LineView_textInfo));
+        }
 
         arr.recycle();
     }

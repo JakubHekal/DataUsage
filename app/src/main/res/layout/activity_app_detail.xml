@@ -1,26 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorBackground"
-    android:orientation="vertical"
-    tools:context=".activities.AppsActivity">
+    android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="0dp"
-        android:theme="@style/ToolBarStyle"
-        app:popupTheme="@style/menu_item" />
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/collapsingToolbarLayoutLargeSize"
+            app:collapsedTitleTextAppearance="@style/Material3Theme.AppBarCollapsedTitle"
+            app:expandedTitleMarginStart="24dp"
+            app:expandedTitleTextAppearance="@style/Material3Theme.AppBarExpandedTitle"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="0dp"
+                app:layout_collapseMode="pin" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
-        android:background="?attr/colorBackground"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:id="@+id/main_container"
@@ -28,112 +41,84 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <ImageView
-            android:id="@+id/app_detail_icon"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp" />
-
-        <TextView
-            android:id="@+id/app_detail_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/medium"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="?attr/colorPrimaryText" />
-
-        <TextView
-            android:id="@+id/app_detail_package"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/regular"
-            android:textColor="?attr/colorBorder" />
-    </LinearLayout>
-
-            <View
-                android:id="@+id/view"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0.2dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                android:background="?attr/colorBorder" />
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10dp">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:fontFamily="@font/medium"
-        android:text="@string/today"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="?attr/colorPrimaryText" />
+                <ImageView
+                    android:id="@+id/app_detail_icon"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="30dp" />
+
+                <TextView
+                    android:id="@+id/app_detail_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium" />
+
+                <TextView
+                    android:id="@+id/app_detail_package"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    android:textColor="?android:attr/textColorSecondary" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/today"
+                android:textColor="?attr/colorPrimary"
+                android:textStyle="bold" />
 
             <com.jakubhekal.datausage.views.LineView
-        android:id="@+id/data_today_total"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:imageIcon="@drawable/icon_data_total"
-        app:textTitle="@string/data_total"/>
-
-    <com.jakubhekal.datausage.views.LineView
-        android:id="@+id/data_today_received"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:imageIcon="@drawable/icon_data_received"
-        app:textTitle="@string/data_received"/>
-
-    <com.jakubhekal.datausage.views.LineView
-        android:id="@+id/data_today_transmitted"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:imageIcon="@drawable/icon_data_transmitted"
-        app:textTitle="@string/data_transmitted"/>
-
-            <View
-                android:id="@+id/view2"
+                android:id="@+id/data_today_total"
                 android:layout_width="match_parent"
-                android:layout_height="0.2dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                android:background="?attr/colorBorder" />
+                android:layout_height="wrap_content"
+                app:textTitle="@string/app_detail_data_total" />
+
+            <com.jakubhekal.datausage.views.LineView
+                android:id="@+id/data_today_received"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textTitle="@string/app_detail_data_received" />
+
+            <com.jakubhekal.datausage.views.LineView
+                android:id="@+id/data_today_transmitted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textTitle="@string/app_detail_data_transmitted" />
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/medium"
-                android:text="@string/this_period"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="?attr/colorPrimaryText" />
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/period"
+                android:textColor="?attr/colorPrimary"
+                android:textStyle="bold" />
 
             <com.jakubhekal.datausage.views.LineView
                 android:id="@+id/data_period_total"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                app:imageIcon="@drawable/icon_data_total"
-                app:textTitle="@string/data_total" />
+                app:textTitle="@string/app_detail_data_total" />
 
             <com.jakubhekal.datausage.views.LineView
                 android:id="@+id/data_period_received"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                app:imageIcon="@drawable/icon_data_received"
-                app:textTitle="@string/data_received" >
+                app:textTitle="@string/app_detail_data_received">
 
             </com.jakubhekal.datausage.views.LineView>
 
@@ -141,28 +126,32 @@
                 android:id="@+id/data_period_transmitted"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                app:imageIcon="@drawable/icon_data_transmitted"
-                app:textTitle="@string/data_transmitted" />
+                app:textTitle="@string/app_detail_data_transmitted">
 
-            <View
-                android:id="@+id/view3"
+            </com.jakubhekal.datausage.views.LineView>
+
+            <TextView
+                android:id="@+id/textView8"
                 android:layout_width="match_parent"
-                android:layout_height="0.2dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="?attr/colorBorder" />
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/app_detail_system"
+                android:textColor="?attr/colorPrimary"
+                android:textStyle="bold" />
 
             <com.jakubhekal.datausage.views.LineView
                 android:id="@+id/app_detail_info"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:imageIcon="@drawable/icon_info"
                 app:textInfo="@string/app_detail_settings_info"
-                app:textTitle="@string/app_detail_settings_title" />
+                app:textTitle="@string/app_detail_settings_title" >
 
-        </LinearLayout>/
+            </com.jakubhekal.datausage.views.LineView>
+
+        </LinearLayout>
+        /
 
     </androidx.core.widget.NestedScrollView>
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

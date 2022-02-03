@@ -4,50 +4,36 @@
     package="com.jakubhekal.datausage">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
-    <permission android:name="android.permission.PACKAGE_USAGE_STATS" android:protectionLevel="signature" />
+    <permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        android:protectionLevel="signature" />
 
     <application
+        android:name=".DataUsageApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon_app"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".activities.PermissionsActivity"></activity>
-        <activity android:name=".activities.AppDetailActivity" />
+        android:theme="@style/Material3Theme">
 
-        <service
-            android:name=".NotifyService"
-            android:exported="true" />
-
-        <activity
-            android:name=".activities.NotificationsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.AppsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.SplashActivity"
-            android:screenOrientation="portrait">
+        <activity android:name=".activities.MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activities.MainActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.SettingsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.LimitsActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".activities.SettingsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activities.AppDetailActivity" android:screenOrientation="portrait"/>
+
+        <service android:name=".NotifyService" android:exported="true" />
     </application>
 
 </manifest>

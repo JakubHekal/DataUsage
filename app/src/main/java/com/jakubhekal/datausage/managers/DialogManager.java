@@ -1,12 +1,11 @@
 package com.jakubhekal.datausage.managers;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.view.LayoutInflater;
+import android.content.DialogInterface;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.RadioButton;
 
 import androidx.appcompat.app.AlertDialog;
@@ -16,9 +15,9 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.jakubhekal.datausage.R;
 import com.jakubhekal.datausage.Utils;
-import com.jakubhekal.datausage.activities.SettingsActivity;
 
-import java.util.Objects;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DialogManager {
 
@@ -37,20 +36,19 @@ public class DialogManager {
         dialogs.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }*/
 
-    public static void showThemeDialog(Context context, LayoutInflater inflater, PreferenceManager preferenceManager, Class<?> cls){
+    public static void showThemeDialog(Context context){
 
-        final View dialogView = inflater.inflate(R.layout.dialog_theme, null);
+        View dialogView = ((Activity) context).getLayoutInflater().inflate(R.layout.dialog_theme, null);
 
-        AlertDialog dialogs = new MaterialAlertDialogBuilder(context)
+        AlertDialog alertDialog = new MaterialAlertDialogBuilder(context)
+                .setTitle(R.string.dialog_theme_title)
                 .setView(dialogView)
-                .setCancelable(true)
+                .setNegativeButton(R.string.dialog_negative_button, (dialog, which) -> dialog.dismiss())
                 .show();
 
-        dialogs.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        final RadioButton radioLight = dialogView.findViewById(R.id.radio_limited);
-        final RadioButton radioDark = dialogView.findViewById(R.id.radio_unlimited);
-        final RadioButton radioSystem = dialogView.findViewById(R.id.radio_system);
+        RadioButton radioLight = dialogView.findViewById(R.id.radio_limited);
+        RadioButton radioDark = dialogView.findViewById(R.id.radio_unlimited);
+        RadioButton radioSystem = dialogView.findViewById(R.id.radio_system);
 
         switch (AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
@@ -70,20 +68,86 @@ public class DialogManager {
 
 
         radioLight.setOnCheckedChangeListener((compoundButton, b) -> {
-            Utils.setTheme(context,preferenceManager,AppCompatDelegate.MODE_NIGHT_NO, cls);
-            dialogs.dismiss();
+            Utils.setTheme(context, AppCompatDelegate.MODE_NIGHT_NO);
+            alertDialog.dismiss();
         });
 
         radioDark.setOnCheckedChangeListener((compoundButton, b) -> {
-            Utils.setTheme(context,preferenceManager,AppCompatDelegate.MODE_NIGHT_YES, cls);
-            dialogs.dismiss();
+            Utils.setTheme(context, AppCompatDelegate.MODE_NIGHT_YES);
+            alertDialog.dismiss();
         });
 
 
         radioSystem.setOnCheckedChangeListener((compoundButton, b) -> {
-            Utils.setTheme(context,preferenceManager,AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM, cls);
-            dialogs.dismiss();
+            Utils.setTheme(context, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+            alertDialog.dismiss();
         });
+    }
+
+
+    public static void showDataSizeDialog(Context context, int title, Long value, String unit, OnDataSizeDialogPositiveClick listener){
+
+        View dialogView = ((Activity) context).getLayoutInflater().inflate(R.layout.dialog_data_size, null);
+        EditText inputData = dialogView.findViewById(R.id.input_data);
+        MaterialButton unitPicker = dialogView.findViewById(R.id.input_unit);
+
+        AlertDialog alertDialog = new MaterialAlertDialogBuilder(context)
+                .setTitle(title)
+                .setView(dialogView)
+                .setNegativeButton(R.string.dialog_negative_button, (dialog, which) -> dialog.dismiss())
+                .setPositiveButton(R.string.dialog_positive_button, (dialog, which) -> {
+                    String currentUnit = unitPicker.getText().toString();
+                    if(inputData.getText().length() > 0) {
+                        listener.onClick(dialog, Long.valueOf(inputData.getText().toString()) * (currentUnit == DATA_SIZE_UNIT_MB ? DATA_SIZE_CONVERSION_MB : DATA_SIZE_CONVERSION_GB), currentUnit);
+                    } else {
+                        listener.onClick(dialog, 0L, unitPicker.getText().toString());
+                    }
+
+                })
+                .show();
+
+        inputData.setText(String.valueOf(value / (unit == DATA_SIZE_UNIT_MB ? DATA_SIZE_CONVERSION_MB : DATA_SIZE_CONVERSION_GB)));
+        unitPicker.setText(unit);
+
+        unitPicker.setOnClickListener(view -> {
+            if(unitPicker.getText() == DATA_SIZE_UNIT_MB) {
+                unitPicker.setText(DATA_SIZE_UNIT_GB);
+            } else {
+                unitPicker.setText(DATA_SIZE_UNIT_MB);
+            }
+        });
+    }
+
+    public static final String DATA_SIZE_UNIT_MB = "MB";
+    public static final Long DATA_SIZE_CONVERSION_MB = 1000000L;
+    public static final String DATA_SIZE_UNIT_GB = "GB";
+    public static final Long DATA_SIZE_CONVERSION_GB = 1000000000L;
+
+    public interface OnDataSizeDialogPositiveClick {
+        void onClick(DialogInterface dialog, Long value, String unit);
+    }
+
+    public static void showDayPickerDialog(Context context, int title, int day, OnDayPickerPositiveClick listener){
+
+        View dialogView = ((Activity) context).getLayoutInflater().inflate(R.layout.dialog_day_picker, null);
+
+        NumberPicker dayPicker = dialogView.findViewById(R.id.number_picker_day);
+
+        AlertDialog alertDialog = new MaterialAlertDialogBuilder(context)
+                .setTitle(title)
+                .setView(dialogView)
+                .setNegativeButton(R.string.dialog_negative_button, (dialog, which) -> dialog.dismiss())
+                .setPositiveButton(R.string.dialog_positive_button, (dialog, which) -> listener.onClick(dialog, dayPicker.getValue()))
+                .show();
+
+        dayPicker.setMinValue(1);
+        dayPicker.setMaxValue(31);
+        dayPicker.setValue(day);
+
+    }
+
+    public interface OnDayPickerPositiveClick {
+        void onClick(DialogInterface dialog, int day);
     }
 
 }

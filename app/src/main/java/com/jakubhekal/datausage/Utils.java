@@ -63,40 +63,18 @@ public class Utils {
         }
     }
 
-    public static void setTheme(Context context, PreferenceManager preferenceManager, int mode, Class<?> cls){
-        preferenceManager.setNightMode(mode);
+    public static void setTheme(Context context, int mode){
         AppCompatDelegate.setDefaultNightMode(mode);
-        Bundle bundle = ActivityOptions.makeCustomAnimation(context,
-                android.R.anim.fade_in,android.R.anim.fade_out).toBundle();
-        Intent intent = new Intent(context, cls);
+        Bundle bundle = ActivityOptions.makeCustomAnimation(context, android.R.anim.fade_in,android.R.anim.fade_out).toBundle();
+        Intent intent = new Intent(context, context.getClass());
         ((Activity) context).finish();
-        context.startActivity(intent,bundle);
+        context.startActivity(intent, bundle);
     }
 
     public static int getAttrColor(Context context, int attr){
         TypedValue typedValue = new TypedValue();
         context.getTheme().resolveAttribute(attr, typedValue, true);
         return ContextCompat.getColor(context, typedValue.resourceId);
-    }
-
-    public static int getCurrentTheme(Context context) {
-        PreferenceManager preferenceManager = new PreferenceManager(context);
-
-        AppCompatDelegate.setDefaultNightMode(preferenceManager.getNightMode());
-
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            return R.style.AppTheme_Dark;
-        }
-
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM) {
-            UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
-            int mode = uiModeManager.getNightMode();
-            if (mode == UiModeManager.MODE_NIGHT_YES) {
-                return R.style.AppTheme_Dark;
-            }
-        }
-
-        return R.style.AppTheme;
     }
 
 }

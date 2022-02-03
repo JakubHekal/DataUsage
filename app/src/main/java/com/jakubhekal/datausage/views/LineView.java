@@ -44,20 +44,33 @@ public class LineView extends RelativeLayout {
         inflate(context, R.layout.item_line,this);
         TypedArray arr = context.obtainStyledAttributes(attrs,R.styleable.LineView, styleAttr,0);
 
-        imageIcon = findViewById(R.id.line_icon);
+        //imageIcon = findViewById(R.id.line_icon);
         textTitle = findViewById(R.id.line_title);
         textInfo = findViewById(R.id.line_info);
 
-        imageIcon.setImageDrawable(arr.getDrawable(R.styleable.LineView_imageIcon));
-        imageIcon.setImageTintList(ColorStateList.valueOf(arr.getColor(R.styleable.LineView_tintIcon, Utils.getAttrColor(context,R.attr.colorIcon))));
+        //imageIcon.setImageDrawable(arr.getDrawable(R.styleable.LineView_imageIcon));
+        //imageIcon.setImageTintList(ColorStateList.valueOf(arr.getColor(R.styleable.LineView_tintIcon, Utils.getAttrColor(context,R.attr.colorIcon))));
         textTitle.setText(arr.getText(R.styleable.LineView_textTitle));
-        textInfo.setText(arr.getText(R.styleable.LineView_textInfo));
+        setInfo(arr.getText(R.styleable.LineView_textInfo));
 
         arr.recycle();
     }
 
+    public void setInfo(CharSequence info) {
+        if(info == null) {
+            setInfo(null);
+        } else {
+            setInfo(info.toString());
+        }
+    }
+
     public void setInfo(String info){
-        textInfo.setText(info);
+        if(info == null) {
+            textInfo.setVisibility(GONE);
+        } else {
+            textInfo.setVisibility(VISIBLE);
+            textInfo.setText(info);
+        }
     }
 
 }

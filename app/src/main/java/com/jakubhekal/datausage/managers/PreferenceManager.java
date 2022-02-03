@@ -18,8 +18,9 @@ public class PreferenceManager {
         public static final String NIGHT_MODE = "night.mode";
         public static final String PERIOD_START = "period.start";
         public static final String PERIOD_LIMIT = "period.limit";
-        public static final String PERIOD_LIMIT_CUSTOM = "period.limit.custom";
+        public static final String PERIOD_LIMIT_UNIT = "period.limit.unit";
         public static final String DAILY_LIMIT = "daily.limit";
+        public static final String DAILY_LIMIT_UNIT = "daily.limit.unit";
         public static final String DAILY_LIMIT_CUSTOM = "daily.limit.custom";
         public static final String NOTIFICATION_PERMANENT = "notification.permanent";
         public static final String NOTIFICATION_WARNING = "notification.warning";
@@ -80,15 +81,15 @@ public class PreferenceManager {
         return sharedPreferences.getLong(PREF_CONSTANTS.PERIOD_LIMIT,0);
     }
 
-    // Period limit custom
-    public void setPeriodLimitCustom(boolean isCustom){
+    // Period limit unit
+    public void setPeriodLimitUnit(String unit){
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(PREF_CONSTANTS.PERIOD_LIMIT_CUSTOM, isCustom);
+        editor.putString(PREF_CONSTANTS.PERIOD_LIMIT_UNIT, unit);
         editor.apply();
     }
 
-    public boolean getPeriodLimitCustom() {
-        return sharedPreferences.getBoolean(PREF_CONSTANTS.PERIOD_LIMIT_CUSTOM,false);
+    public String getPeriodLimitUnit() {
+        return sharedPreferences.getString(PREF_CONSTANTS.PERIOD_LIMIT_UNIT, DialogManager.DATA_SIZE_UNIT_GB);
     }
 
     // Daily limit
@@ -100,6 +101,17 @@ public class PreferenceManager {
 
     public Long getDailyLimit() {
         return sharedPreferences.getLong(PREF_CONSTANTS.DAILY_LIMIT,0);
+    }
+
+    // Daily limit unit
+    public void setDailyLimitUnit(String unit){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(PREF_CONSTANTS.DAILY_LIMIT_UNIT, unit);
+        editor.apply();
+    }
+
+    public String getDailyLimitUnit() {
+        return sharedPreferences.getString(PREF_CONSTANTS.DAILY_LIMIT_UNIT, DialogManager.DATA_SIZE_UNIT_MB);
     }
 
     // Daily limit custom

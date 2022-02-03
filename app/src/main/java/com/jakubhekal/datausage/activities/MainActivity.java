@@ -1,100 +1,88 @@
 package com.jakubhekal.datausage.activities;
 
-import android.annotation.TargetApi;
-import android.app.usage.NetworkStatsManager;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.View;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.jakubhekal.datausage.DateTimeUtils;
-import com.jakubhekal.datausage.NotifyService;
-import com.jakubhekal.datausage.R;
-import com.jakubhekal.datausage.managers.NetworkUsageManager;
-import com.jakubhekal.datausage.managers.PreferenceManager;
-import com.jakubhekal.datausage.managers.DialogManager;
-import com.jakubhekal.datausage.managers.PermissionManager;
-import com.jakubhekal.datausage.Utils;
-import com.jakubhekal.datausage.views.LineView;
-import com.jakubhekal.datausage.views.ProgressBarView;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Debug;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.jakubhekal.datausage.BottomNavigationPager;
+import com.jakubhekal.datausage.NotifyService;
+import com.jakubhekal.datausage.fragments.AppsFragment;
+import com.jakubhekal.datausage.fragments.OverviewFragment;
+import com.jakubhekal.datausage.R;
+import com.jakubhekal.datausage.managers.PermissionManager;
 
 public class MainActivity extends AppCompatActivity {
 
-    ProgressBarView dailyUsageView;
-    ProgressBarView periodUsageView;
+    AppBarLayout appBarLayout;
+    BottomNavigationView bottomNavigationView;
 
-    LineView missingPermissionsView;
-    LineView periodView;
-    LineView appsView;
-    LineView settingsView;
-
-    PreferenceManager preferenceManager;
-    NetworkUsageManager networkUsageManager;
+    BottomNavigationPager bottomNavigationPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(Utils.getCurrentTheme(this));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        preferenceManager = new PreferenceManager(this);
-        networkUsageManager = new NetworkUsageManager(this);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
-        toolbar.setTitle(getString(R.string.app_name));
+        toolbar.inflateMenu(R.menu.main_app_bar_menu);
 
-        dailyUsageView = findViewById(R.id.daily_usage);
-        periodUsageView = findViewById(R.id.monthly_usage);
+        appBarLayout = findViewById(R.id.top_app_bar);
+        bottomNavigationView = findViewById(R.id.bottom_navigation_bar);
 
-        missingPermissionsView = findViewById(R.id.missing_permissions);
-        periodView = findViewById(R.id.period);
-        appsView = findViewById(R.id.apps);
-        settingsView = findViewById(R.id.settings);
+    }
 
-        missingPermissionsView.setOnClickListener(view -> startActivity(new Intent(this, PermissionsActivity.class)));
-        appsView.setOnClickListener(view -> startActivity(new Intent(this, AppsActivity.class)));
-        settingsView.setOnClickListener(view -> startActivity(new Intent(this, SettingsActivity.class)));
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        bottomNavigationPager = new BottomNavigationPager(this, bottomNavigationView, R.id.content);
+        bottomNavigationPager.bindFragment(R.id.menu_item_overview, new OverviewFragment());
+        bottomNavigationPager.bindFragment(R.id.apps, new AppsFragment());
+        bottomNavigationPager.enable();
 
         if (PermissionManager.hasPermissions(this)) {
-            calculateOverview();
             startService(new Intent(this, NotifyService.class));
-            missingPermissionsView.setVisibility(View.GONE);
         } else {
-            missingPermissionsView.setVisibility(View.VISIBLE);
+            new MaterialAlertDialogBuilder(this)
+                    .setTitle("Missing permissions")
+                    .setMessage("Give this app some permissions to work properly")
+                    .setNegativeButton("Leave", ((dialog, which) -> finish()))
+                    .setPositiveButton("OK", (dialog, which) -> {
+                        dialog.dismiss();
+                        PermissionManager.requestPermissions(this);
+                    })
+                    .show();
         }
     }
 
-    private void calculateOverview() {
-        int daysTillEndOfPeriod = DateTimeUtils.getDaysTillPeriodEnd(preferenceManager);
-        Long periodUsage = networkUsageManager.getAllBytesMobile(DateTimeUtils.getPeriodStartMillis(preferenceManager.getPeriodStart()), DateTimeUtils.getDayEndMillis());
-        Long periodLimit = preferenceManager.getPeriodLimit();
-
-        periodUsageView.setData(Utils.convertFromBytes(periodUsage), Utils.convertFromBytes(periodLimit), ((float)periodUsage / periodLimit));
-        periodView.setInfo(Utils.formatDaysReaming(this, daysTillEndOfPeriod, DateTimeUtils.dateFromMillis(DateTimeUtils.getPeriodEndMillis(preferenceManager.getPeriodStart()))));
-
-        Long dailyUsage = networkUsageManager.getAllBytesMobile(DateTimeUtils.getDayStartMillis(), DateTimeUtils.getDayEndMillis());
-        Long dailyLimit = preferenceManager.getDailyLimitCustom() ? preferenceManager.getDailyLimit() : (periodLimit - (periodUsage-dailyUsage)) / daysTillEndOfPeriod;
-
-        dailyUsageView.setData(Utils.convertFromBytes(dailyUsage), Utils.convertFromBytes(dailyLimit), ((float)dailyUsage / dailyLimit));
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_app_bar_menu, menu);
+        return true;
     }
 
-
     @Override
-    @TargetApi(Build.VERSION_CODES.M)
-    protected void onResume() {
-        super.onResume();
-        if (PermissionManager.hasPermissions(this)) {
-            calculateOverview();
-            startService(new Intent(this, NotifyService.class));
-            missingPermissionsView.setVisibility(View.GONE);
-        } else {
-            missingPermissionsView.setVisibility(View.VISIBLE);
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }
