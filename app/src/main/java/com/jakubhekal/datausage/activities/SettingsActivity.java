@@ -44,7 +44,6 @@ public class SettingsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.icon_arrow_back);
         toolbar.setNavigationOnClickListener(v -> {
-            setResult(RESULT_CANCELED,null);
             finish();
         });
 

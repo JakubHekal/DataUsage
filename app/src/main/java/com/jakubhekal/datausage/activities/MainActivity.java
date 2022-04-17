@@ -1,17 +1,13 @@
 package com.jakubhekal.datausage.activities;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -50,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         bottomNavigationPager = new BottomNavigationPager(this, bottomNavigationView, R.id.content);
-        bottomNavigationPager.bindFragment(R.id.menu_item_overview, new OverviewFragment());
+        bottomNavigationPager.bindFragment(R.id.overview, new OverviewFragment());
         bottomNavigationPager.bindFragment(R.id.apps, new AppsFragment());
         bottomNavigationPager.enable();
 
@@ -79,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_settings:
+                bottomNavigationPager.disable();
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             default:

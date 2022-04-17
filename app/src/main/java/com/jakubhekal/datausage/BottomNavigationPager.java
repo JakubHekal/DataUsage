@@ -1,10 +1,11 @@
 package com.jakubhekal.datausage;
 
-import android.app.Activity;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Context;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -13,7 +14,6 @@ import java.util.Map;
 
 public class BottomNavigationPager {
 
-    Context context;
     BottomNavigationView bottomNavigationView;
     FragmentManager fragmentManager;
     Integer containerId;
@@ -21,11 +21,10 @@ public class BottomNavigationPager {
     Integer activeId;
 
     public BottomNavigationPager(Context context, BottomNavigationView bottomNavigationView, Integer containerId) {
-        this.context = context;
         this.bottomNavigationView = bottomNavigationView;
         this.containerId = containerId;
 
-        fragmentManager = ((Activity)context).getFragmentManager();
+        this.fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
         for (Fragment fragment : fragmentManager.getFragments()) {
             fragmentManager.beginTransaction().remove(fragment).commit();
         }
@@ -45,6 +44,10 @@ public class BottomNavigationPager {
             changeFragment(item.getItemId());
             return true;
         });
+    }
+
+    public void disable() {
+        fragmentManager = null;
     }
 
     public void refresh() {

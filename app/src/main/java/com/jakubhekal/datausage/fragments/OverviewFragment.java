@@ -3,7 +3,7 @@ package com.jakubhekal.datausage.fragments;
 import android.content.Context;
 import android.os.Bundle;
 
-import android.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
