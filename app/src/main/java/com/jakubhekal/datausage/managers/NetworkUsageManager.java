@@ -7,6 +7,7 @@ import android.app.usage.NetworkStatsManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
+import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
@@ -119,10 +120,11 @@ public class NetworkUsageManager {
 
     @SuppressLint("MissingPermission")
     private String getSubscriberId() {
-        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        if (PermissionManager.hasPermissionToReadPhoneStats(context)) {
-            return tm.getSubscriberId();
+        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.P || !PermissionManager.hasPermissionToReadPhoneStats(context)) {
+            return null;
         }
-        return "";
+
+        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        return tm.getSubscriberId();
     }
 }

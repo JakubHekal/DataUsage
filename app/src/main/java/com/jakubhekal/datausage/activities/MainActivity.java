@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_settings:
-                bottomNavigationPager.disable();
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             default:

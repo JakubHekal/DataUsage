@@ -46,10 +46,6 @@ public class BottomNavigationPager {
         });
     }
 
-    public void disable() {
-        fragmentManager = null;
-    }
-
     public void refresh() {
         for(Map.Entry<Integer,Fragment> fragmentEntry : fragmentMap.entrySet()) {
             fragmentManager.beginTransaction().hide(fragmentEntry.getValue()).commit();
