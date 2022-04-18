@@ -19,6 +19,7 @@ public class BottomNavigationPager {
     Integer containerId;
     Map<Integer, Fragment> fragmentMap;
     Integer activeId;
+    OnFragmentChangedListener listener;
 
     public BottomNavigationPager(Context context, BottomNavigationView bottomNavigationView, Integer containerId) {
         this.bottomNavigationView = bottomNavigationView;
@@ -55,6 +56,15 @@ public class BottomNavigationPager {
 
     private void changeFragment(Integer id) {
         fragmentManager.beginTransaction().hide(fragmentMap.get(activeId)).show(fragmentMap.get(id)).commit();
+        listener.onFragmentChanged(id, fragmentMap.get(activeId),fragmentMap.get(id));
         activeId = id;
+    }
+
+    public void setOnFragmentChangedListener(OnFragmentChangedListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnFragmentChangedListener {
+        void onFragmentChanged(Integer optionId, Fragment newFragment, Fragment oldFragment);
     }
 }

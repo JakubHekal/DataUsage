@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         bottomNavigationPager = new BottomNavigationPager(this, bottomNavigationView, R.id.content);
+        bottomNavigationPager.setOnFragmentChangedListener((id, newFragment, oldFragment) -> {
+            appBarLayout.setExpanded(id == R.id.overview);
+        });
         bottomNavigationPager.bindFragment(R.id.overview, new OverviewFragment());
         bottomNavigationPager.bindFragment(R.id.apps, new AppsFragment());
         bottomNavigationPager.enable();
