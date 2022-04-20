@@ -39,9 +39,9 @@ public class DateTimeUtils {
         c.set(Calendar.SECOND, 0);
         c.set(Calendar.MILLISECOND, 0);
 
-        while (c.get(Calendar.DAY_OF_MONTH) != endingDay) {
+        do {
             c.add(Calendar.DATE, 1);
-        }
+        } while (c.get(Calendar.DAY_OF_MONTH) != endingDay);
 
         c.add(Calendar.DATE, -1);
 
