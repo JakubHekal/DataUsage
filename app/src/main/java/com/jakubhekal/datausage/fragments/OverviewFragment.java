@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -26,6 +27,7 @@ public class OverviewFragment extends Fragment {
 
     UsageBarView dailyUsageBarView;
     UsageBarView periodUsageBarView;
+    TextView currentPeriodView;
 
     PreferenceManager preferenceManager;
     NetworkUsageManager networkUsageManager;
@@ -43,6 +45,7 @@ public class OverviewFragment extends Fragment {
         context = getContext();
         dailyUsageBarView = root.findViewById(R.id.daily_usage_bar);
         periodUsageBarView = root.findViewById(R.id.period_usage_bar);
+        currentPeriodView = root.findViewById(R.id.current_period_value);
 
         preferenceManager = new PreferenceManager(context);
         networkUsageManager = new NetworkUsageManager(context);
@@ -63,5 +66,7 @@ public class OverviewFragment extends Fragment {
         Long dailyLimit = preferenceManager.getDailyLimitCustom() ? preferenceManager.getDailyLimit() : (periodLimit - (periodUsage-dailyUsage)) / daysTillEndOfPeriod;
 
         dailyUsageBarView.setData(dailyUsage, dailyLimit);
+
+        currentPeriodView.setText(DateTimeUtils.dateFromMillis(DateTimeUtils.getPeriodStartMillis(preferenceManager.getPeriodStart())) + " - " + DateTimeUtils.dateFromMillis(DateTimeUtils.getPeriodEndMillis(preferenceManager.getPeriodStart())));
     }
 }

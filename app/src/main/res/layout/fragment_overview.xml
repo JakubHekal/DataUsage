@@ -20,10 +20,32 @@
         </com.jakubhekal.datausage.views.UsageBarView>
 
         <View
-            android:id="@+id/divider2"
+            android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="?android:attr/listDivider" />
+
+        <LinearLayout
+            android:id="@+id/current_period"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-4dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="16dp">
+
+            <TextView
+                android:id="@+id/current_period_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/current_period" />
+
+            <TextView
+                android:id="@+id/current_period_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp" />
+        </LinearLayout>
 
         <com.jakubhekal.datausage.views.UsageBarView
             android:id="@+id/period_usage_bar"

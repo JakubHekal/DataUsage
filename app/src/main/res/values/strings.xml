@@ -63,4 +63,5 @@
 
     <string name="usage_bar_used">used</string>
     <string name="usage_bar_left">left</string>
+    <string name="current_period">Current period:</string>
 </resources>

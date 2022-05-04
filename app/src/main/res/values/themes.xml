@@ -21,4 +21,8 @@
         <item name="android:fontFamily">@font/regular</item>
         <item name="fontFamily">@font/regular</item>
     </style>
+
+    <style name="Material3Theme.AppBarBackgroundColor" parent="Widget.Material3.Toolbar.Surface">
+        <item name="android:background">?android:attr/colorBackground</item>
+    </style>
 </resources>
